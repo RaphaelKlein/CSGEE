@@ -6,23 +6,119 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Cadastro</title>
+    <title>CSGEE | Cadastro</title>
 
 
     <script src="./js/funcoes.js"></script>
 
 
     <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="./css/estilogeral.css">
+    <link rel="stylesheet" href="css/cadastroestilo.css">
+
 </head>
 
 <body>
+    <!-- <div class="navbar">
+        <div class="fundologo"></div>
+        <div class="logo"><img class="logoNav" src="assets/midia/logoColoridaNB.svg" alt=""></div> 
+        <a class="navEstilo" href="">Home</a> <p>|</p>
+        <a href="">Sobre Mim</a> <p>|</p>
+        <a class="navEstilo" href="">Quiz</a> <p>|</p>
+        <a href="">Origem CS</a> <p>|</p>
+        <a class="navEstilo" href="">Origem E-Sports</a>
+       <div class="user" ><div><img class="userImg" src="assets/midia/logoPrincipalNB.svg" alt=""></div> <p id="nome_usuario">CSGEE</p></div>
+    </div> -->
+    <!-- <div class="navbar">
+        <div class="logo"><img class="logoNav" src="assets/midia/logoColoridaNB.svg" alt=""></div> 
+        <a class="navEstilo" href="">Home</a> <p>|</p>
+        <a href="">Sobre Mim</a> <p>|</p>
+        <a class="navEstilo" href="">Quiz</a> <p>|</p>
+        <a href="">Origem CS</a> <p>|</p>
+        <a class="navEstilo" href="">Origem E-Sports</a>
+       <div class="user" ><div><img class="userImg" src="assets/midia/logoPrincipalNB.svg" alt=""></div> <p id="nome_usuario">CSGEE</p></div>
+    </div> -->
 
-    <!--header inicio-->
+    <img class="background">
+    <div class="signupscreen">
+
+        <div class="divisorDir">
+            <h1>CADASTRE-SE!</h1>
+            <img src="assets/midia/logoPrincipalNB.svg" alt="">
+        </div>
+        <div class="centro"></div>
+        <div class="divisorEsq">
+            <div id="divTermos" class="termosCadastro">
+                <h2>Ao realizar seu cadastro, você concorda com os seguintes termos:</h2>
+                
+                <div class="scroll">
+                <p class="estilo" >Uso das Informações: As informações fornecidas no cadastro serão utilizadas exclusivamente para os fins
+                estabelecidos, como identificação e contato. Seus dados não
+                serão compartilhados com terceiros sem o seu consentimento, exceto nos casos exigidos por lei.</p>
+
+                <p>Confidencialidade e Segurança: Comprometemo-nos a manter suas informações pessoais em sigilo e a adotar
+                medidas de segurança adequadas para proteger seus dados contra acesso não autorizado, alteração ou
+                divulgação.</p>
+
+                <p class="estilo" >Consentimento para Comunicação: Ao se cadastrar, você consente em receber comunicações relacionadas aos
+                serviços, como notificações, atualizações e informações relevantes. Você poderá optar por não receber
+                determinados tipos de comunicações, conforme as opções disponíveis.</p>
+
+                <p>Acesso e Retificação: Você tem o direito de acessar, corrigir e atualizar suas informações pessoais a
+                qualquer momento. Caso deseje realizar alguma alteração, entre em contato conosco através dos canais de
+                suporte disponíveis.</p>
+
+                <p class="estilo">Encerramento da Conta: Você pode solicitar o encerramento da sua conta a qualquer momento. Ao fazê-lo,
+                seus dados serão mantidos de acordo com nossa política de retenção de dados.</p>
+
+                <p>Ao concordar com estes termos, você reconhece ter lido e compreendido todas as disposições e concorda em
+                cumpri-las integralmente. Reservamo-nos o direito de atualizar estes termos de tempos em tempos,
+                notificando você sobre quaisquer alterações significativas.</p>
+
+                <p class="estilo">Obrigado por escolher nossos serviços e por confiar em nós com suas informações pessoais. Estamos
+                empenhados em proteger sua privacidade e proporcionar uma experiência segura e confiável.</p>
+            </div>
+
+                <button class="formBotao" onclick="esconderTermos()">FECHAR</button>
+            </div>
+            <div class="formCadastro">
+                <h1>Participe da comunidade do CSGEE!</h1>
+
+                <div class="bordasCadastro">
+                    <p><label for="nome_input">Nome de Usuário:</label>
+                        <input type="text" id="nome_input">
+                    </p>
+
+                    <p class="estilo"><label for="email_input">Email:</label>
+                        <input type="text" id="email_input">
+                    </p>
+
+                    <p><label for="confirmacao_email_input">Confirmação de Email:</label>
+                        <input type="text" id="confirmacao_email_input">
+                    </p>
+
+                    <p class="estilo"><label for="senha_input">Senha:</label>
+                        <input type="password" id="senha_input">
+                    </p>
+
+                    <p><label for="confirmacao_senha_input">Confirmação de senha:</label>
+                        <input type="text" id="confirmacao_senha_input">
+                    </p>
+
+                    <span><input id="termos" type="checkbox">
+                        <div>Eu aceito os <a onclick="mostrarTermos()">Termos de Cadastro</a></div>
+                    </span>
+                </div>
+                <button class="formBotao" onclick="cadastrar()">Cadastre-se</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- 
+    header inicio
     <div class="header">
         <div class="container">
             <h1 class="titulo">AquaTech</h1>
@@ -43,7 +139,7 @@
             </ul>
         </div>
     </div>
-    <!--header fim-->
+    header fim
 
 
     <div class="login">
@@ -57,10 +153,10 @@
                 <h2>Bem-vindo!</h2>
                 <div class="formulario">
 
-                    <!--
+                    
                          Para inserir mais um campo, copie uma das inputs abaixo.
                          Assim que inserir vá para o script abaixo.
-                     -->
+                    
 
                     <div class="campo">
                         <span>Nome:</span>
@@ -90,15 +186,15 @@
         </div>
     </div>
 
-    <!--footer inicio-->
+    footer inicio
     <div class="footer">
         <div class="container">
             <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
             <span class="version">v1.0.0</span>
         </div>
     </div>
-    <!--footer fim-->
-
+    footer fim
+ -->
 
 </body>
 

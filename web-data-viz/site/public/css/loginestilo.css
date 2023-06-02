@@ -1,0 +1,116 @@
+img.background{
+    position: absolute;
+    background-image: url(../assets/midia/borradoBG.svg);
+    background-color: rgba(128, 128, 128, 0.301);
+    background-blend-mode: multiply;
+    background-size: cover;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    filter: blur(10px);
+} 
+.loginscreen{
+    z-index: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+.divisorEsq{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 59.5%;
+    height: 100%;
+    /* background-image: url(../assets/midia/assimovBG.svg);
+    background-color: rgba(207, 206, 206, 0);
+    background-blend-mode: multiply;
+    background-size: cover; */
+}
+.centro{
+    width: 0.5%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.253);
+    box-shadow: -2px -2px 12px black;
+}
+.divisorDir{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100%; 
+}
+
+.formLogin{
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(255, 255, 255);
+   
+}
+
+.bordasLogin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 60%;
+    width: 60%;
+    border: solid 1px #fe6903;
+    box-shadow: 5px 5px 20px #883702;
+}
+
+.formBotao{
+    width: 30%;
+    height: 10%;
+    background-color: #fe6903;
+    border: solid 1px #883702;
+    color: rgb(255, 255, 255);
+    font-size: x-large;
+    border-radius: 5px;
+}
+.divisorEsq img{
+    /* border: solid 1px black;
+    border-radius: 50px; */
+    /* background-color: rgb(170, 167, 167); */
+    width: 90%;
+    height: auto;
+}
+
+.formLogin p{
+    cursor: pointer;
+    color: #fe6903;
+}
+
+.formLogin h1{
+    color: #fe6903;
+}
+
+
+.formLogin input{
+    text-align: center;
+    width: 50%;
+    height: 6%;
+    border: solid 1.5px #fe6903;
+    font-size: 120%;
+}
+
+.formLogin label{
+    font-weight: 1000;
+    font-size: 120%;
+}
+
+.divisorEsq h1{
+    margin-bottom: 20px;
+    display: flex;
+    font-size: 10vh;
+    color: #fe6903;
+    /* background-color: rgba(250, 235, 215, 0.548); */
+    text-shadow: 2px 2px 5px black;
+    width: 100%;
+    justify-content: center;
+}

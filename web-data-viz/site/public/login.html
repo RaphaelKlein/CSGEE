@@ -6,21 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Login</title>
+    <title>CSGEE | Login</title>
 
     <script src="./js/funcoes.js"></script>
 
     <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="./css/estilogeral.css">
+    <link rel="stylesheet" href="./css/loginestilo.css">
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet"> -->
 </head>
 
 <body>
 
-    <!--Header-->
+    <img class="background">
+    <div class="loginscreen">
+
+        <div class="divisorDir">
+            <div class="formLogin">
+                <h1>Entre na sua conta para continuar!</h1>
+                <div class="bordasLogin">
+                    <label for="login_input">Email ou Nome de Usuário:</label>
+                    <input type="text" id="login_input" placeholder="Nome do Usuário">
+                    <label for="senha_input">Senha:</label>
+                    <input type="password" id="senha_input" placeholder="***********">
+                    <p onclick="esqueceu()">Esqueceu a senha?</p>
+                    <b>Ainda não possui uma conta?<p onclick="cadastro()">Crie aqui!</p></b>
+                </div>
+                <button class="formBotao" onclick="entrar()">Entrar</button>
+            </div>
+        </div>
+        <div class="centro"></div>
+        <div class="divisorEsq">
+            <h1>BEM VINDO!</h1>
+            <img src="assets/midia/logoPrincipalNB.svg" alt="">
+        </div>
+    </div>
+
+    <!--
+    Header
 
     <div class="header">
         <div class="container">
@@ -74,14 +100,14 @@
         </div>
     </div>
 
-    <!--footer inicio-->
+    footer inicio
     <div class="footer">
         <div class="container">
             <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
             <span class="version">v1.0.0</span>
         </div>
     </div>
-    <!--footer fim-->
+    footer fim -->
 
 </body>
 
