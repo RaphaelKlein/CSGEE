@@ -141,13 +141,13 @@
     </div>
     header fim
 
-
     <div class="login">
-        <div class="alerta_erro">
+        --><div class="alerta_erro">
             <div class="card_erro" id="cardErro">
                 <span id="mensagem_erro"></span>
             </div>
-        </div>
+            <!-- 
+    </div>
         <div class="container">
             <div class="card card-cadastro">
                 <h2>Bem-vindo!</h2>
@@ -176,14 +176,15 @@
                     </div>
                     <button class="botao" onclick="cadastrar()">Cadastrar</button>
 
-                </div>
-                <div id="div_aguardar" class="loading-div">
+                 </div>
+                 --> 
+           <div id="div_aguardar" class="loading-div">
                     <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
+                </div> 
 
                 <div id="div_erros_login"></div>
             </div>
-        </div>
+        <!-- </div>
     </div>
 
     footer inicio
@@ -193,8 +194,8 @@
             <span class="version">v1.0.0</span>
         </div>
     </div>
-    footer fim
- -->
+    footer fim -->
+
 
 </body>
 
@@ -208,10 +209,11 @@
         // Agora vá para o método fetch logo abaixo
         var nomeVar = nome_input.value;
         var emailVar = email_input.value;
+        var confirmacaoEmailVar = confirmacao_email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+        if (nomeVar == "" || emailVar == "" || confirmacaoEmailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
@@ -222,6 +224,27 @@
             setInterval(sumirMensagem, 5000)
         }
 
+        if (senhaVar != confirmacaoSenhaVar){
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(A Confirmação da senha está diferente do campo senha!)";
+
+            finalizarAguardar();
+            return false;
+
+        } else{
+            setInterval(sumirMensagem,5000)
+        }
+
+        if (emailVar != confirmacaoEmailVar){
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(O campo confirmação do e-mail está diferente do campo e-mail!)";
+
+            finalizarAguardar();
+            return false;
+
+        } else{
+            setInterval(sumirMensagem,5000)
+        }
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
             method: "POST",
