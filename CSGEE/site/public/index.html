@@ -2,64 +2,58 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | CSGEE</title>
-  <link rel="stylesheet" href="./css/estilogeral.css">
-  <link rel="stylesheet" href="./css/estiloindex.css">
-  <link rel="icon" href="assets/icon/favicon2.ico">
-  <script src="js/funcoes.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | CSGEE</title>
+    <!-- <link rel="stylesheet" href="./css/estilogeral.css"> -->
+    <link rel="stylesheet" href="./css/estiloindex.css">
+    <link rel="icon" href="assets/icon/favicon2.ico">
+    <script src="js/funcoes.js"></script>
 </head>
 
 <body onload="validarSessaoHome()">
-    <div class="navbar">
+    <div class="fixbar">
+        <div class="logo"><img class="logoNav" src="assets/midia/logoFixBar.svg" alt=""></div>
+        <div class="espacamentoFixbar"></div>
+        <div class="links"><img src="assets/midia/github.png" alt=""></div>
+    </div>
+    </div>
+    <div class="navbar">    
         <div class="fundologo"></div>
         <div class="logo"><img class="logoNav" src="assets/midia/logoColoridaNB.svg" alt=""></div>
-
-        <a class="navEstilo" href="index.html">Home</a>
-        <p>|</p>
-        <a href="sobremim.html">Sobre Mim</a>
-        <p>|</p>
-        <a class="navEstilo" href="quiz.html">Quiz</a>
-        <p>|</p>
-        <a href="origemcs.html">Origem CS</a>
-        <p>|</p>
-        <a class="navEstilo" href="esports.html">Origem E-Sports</a>
+        <div class="links">
+            <a class="navEstilo" href="index.html">Home</a>
+            <p>|</p>
+            <a href="sobremim.html">Sobre Mim</a>
+            <p>|</p>
+            <a class="navEstilo" href="quiz.html">Quiz</a>
+            <p>|</p>
+            <a href="origemcs.html">Origem CS</a>
+            <p>|</p>
+            <a class="navEstilo" href="esports.html">E-Sports</a>
+        </div>
         <div id="navGuest" class="guest">
             <a href="login.html">Entrar</a>
             <a class="navEstilo" href="cadastro.html">Cadastre-se</a>
         </div>
-
         <div id="navUser" class="user">
             <div onclick="profile()"><img id="navImgUser" class="userImg" src="" alt=""></div>
             <p onclick="profile()" id="navNomeUser"></p>
         </div>
     </div>
-    <div class="fixbar">
-        <div class="logo"><img class="logoNav" src="assets/midia/logoColoridaNB.svg" alt=""></div>
-        <div class="espacamentoFixbar"></div>
-        <div id="fixGuest" class="guest">
-            <a href="login.html">Entrar</a>
-            <a class="navEstilo" href="cadastro.html">Cadastre-se</a>
-        </div>
-
-        <div id="fixUser" class="user">
-            <div onclick="profile()"><img id="fixImgUser" class="userImg" src="assets/midia/logoPrincipalNB.svg" alt="">
-            </div>
-            <p onclick="profile()" id="fixNomeUser"></p>
-        </div>
-    </div>
-
     <div class="site">
-    <div class="video">
-    <video class="homeVideo" src="assets/midia/home.mp4" loop autoplay muted>
+        <div class="video">
+            <video class="homeVideo" src="assets/midia/home.mp4" loop autoplay muted>
+        </div>
+        <div class="divisoria"></div>
+        <div class="container"></div>
     </div>
-    </div>
+    <div class="divisoria"></div>
 </body>
 
 </html>
 <script>
-        document.getElementById("navImgUser").src = `${sessionStorage.IMG_USUARIO}`
-        document.getElementById("fixImgUser").src = `${sessionStorage.IMG_USUARIO}`
+    document.getElementById("navImgUser").src = `${sessionStorage.IMG_USUARIO}`
+    document.getElementById("fixImgUser").src = `${sessionStorage.IMG_USUARIO}`
 </script>

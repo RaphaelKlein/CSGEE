@@ -193,6 +193,7 @@
     }
 
     function imgSubmit() {
+        var imgVar = iptImg.value
         fetch("/perfil/inserirImg", {
             method: "PUT",
             headers: {
@@ -202,7 +203,7 @@
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
                 idServer: idUsuarioVar,
-                imagemServer: iptImg.value,
+                imagemServer: imgVar
             })
         }).then(function (resposta) {
 
@@ -210,7 +211,7 @@
 
             if (resposta.ok) {
 
-                sessionStorage.IMG_USUARIO = iptImg.value
+                sessionStorage.IMG_USUARIO = imgVar
 
                 
             } else {
@@ -242,9 +243,8 @@
                     resposta.json().then(json => {
                         console.log(json);
                         console.log(JSON.stringify(json));
-
-                        nomeUserCfg.value = json.nomeUsuario
-                        emailUserCfg.value = json.email
+                        sessionStorage.NOME_USUARIO = nomeUserCfg.value
+                        nomeUserCfg.value = ''
                     });
                 }
             } else {
@@ -275,13 +275,11 @@
             if (resposta.ok) {
                 console.log(resposta);
                 if (resposta.length != 0) {
-
                     resposta.json().then(json => {
                         console.log(json);
                         console.log(JSON.stringify(json));
-
-                        nomeUserCfg.value = json.nomeUsuario
-                        emailUserCfg.value = json.email
+                        sessionStorage.EMAIL_USUARIO = emailUserCfg.value
+                        emailUserCfg.value = ''
                     });
                 }
             } else {
@@ -317,8 +315,6 @@
                         console.log(json);
                         console.log(JSON.stringify(json));
 
-                        nomeUserCfg.value = json.nomeUsuario
-                        emailUserCfg.value = json.email
                     });
                 }
             } else {

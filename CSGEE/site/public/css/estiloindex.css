@@ -1,22 +1,182 @@
+@font-face {
+    font-family: Stratum2;
+    src: url(../assets/fonts/stratum2-regular-webfont.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Stratum2;
+}
+
 body{
     overflow-x: hidden;
 }
 
-.site {
-    display: flex;
+.barpreenchimento{
     width: 100vw;
-    flex-direction: column;
+    height: 9vh;
+}
+
+.fixbar{
+    display: flex;
+    height: 10vh;
+    width: 100vw;
+    flex-direction: row;
+    position: absolute;
+    z-index: 3;
+    background-color: rgba(245, 245, 220, 0.247);
+}
+
+.fixbar .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+}
+
+.fixbar .logo img{
+    margin-top: 10px;
+    height: 12vh;
+    width: auto;
+}
+
+.espacamentoFixbar{
+    width: 80%;
+    height: 100%;
+}
+
+.fixbar .links{
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    height: 100%;
     justify-content: space-evenly;
+    align-items: center;
+}
+
+.fixbar .links img{
+    height: 90%;
+    width: auto;
+}
+
+.navbar{
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 9vh;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: #FE6903 solid 2px        ;
+}
+
+.navbar .logo{
+    display: flex;
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.navbar .logo img{
+    width: 55%;
+    height: auto;
+    margin-bottom: 5%;
+}
+
+.navbar .links{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 100%;
+    flex-direction: row;
+    background-image: url(../assets/midia/compostoBG.svg);
+    background-size: cover;
+}
+
+.links a{
+    overflow: hidden;
+    display: flex;
+    padding-top: 1.2%;
+    justify-content: center;
+    border-radius: 20px;
+    width: 18%;
+    height: 80%;
+    color: black;
+    text-decoration: none;
+    font-size: 140%;
+    font-weight: 400;
+    background-color: white;
+    transition: 1000ms;
+    border: #FE6903 1px solid;
+}
+
+.navEstilo{
+    overflow: hidden;
+    color: #FE6903;
+}
+
+.links a:hover {
+    overflow: hidden;
+    color: black;
+    box-shadow: 1px 1px 10px black;
+    transform: scale(1, 0.8);
+    width: 18%;
+    gap: 2%;
+    background-color: #fe6903;
+    font-size: 160%;
+    transition: 1000ms;
+}
+.guest{
+    display: flex;
+    width: 20%;
+    height: 100%;
+    
+}
+
+.guest a{
+    overflow: hidden;
+    display: flex;
+    padding-top: 1.2%;
+    justify-content: center;
+    border-radius: 20px;
+    width: 45%;
+    height: 40%;
+    color: black;
+    text-decoration: none;
+    font-weight: 400;
+    background-color: #FE6903;
+    transition: 1000ms;
+}
+.user{
+    display: none;
+    width: 20%;
+    height: 100%;
 }
 
 .video{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
     height: 100vh;
+    width: 100vw;
 }
+
 .homeVideo{
     width: 100%;
     height: auto;
+    position: absolute;
+    z-index: 2;
+}
+.divisoria{
+    width: 100%;
+    height: 1vh;
+    background-color: rgba(240, 248, 255, 0);
+    box-shadow: 3px 3px 10px;
+}
+.container{
+    width: 100%;
+    height: 100vh;
 }
