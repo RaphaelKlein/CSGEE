@@ -33,7 +33,19 @@
             <p id="nome_usuario">CSGEE</p>
         </div>
     </div>
-    <div class="fixbar"></div>
+    <div class="fixbar">
+        <div class="logo"><img class="logoNav" src="assets/midia/logoColoridaNB.svg" alt=""></div>
+        <div class="espacamentoFixbar"></div>
+        <div class="guest">
+            <a href="login.html">Entrar</a>
+            <a class="navEstilo" href="cadastro.html">Cadastre-se</a>
+        </div>
+        <div class="user">
+            <div><img class="userImg" src="assets/midia/logoPrincipalNB.svg" alt=""></div>
+            <p id="nome_usuario">CSGEE</p>
+        </div>
+    </div>
+    <div class="fundosite"></div>
     <div class="site">
         <div class="quiz">
             <div id="instrucoes" class="instrucao">
@@ -43,22 +55,14 @@
 
                 <h1>Instruções</h1>
 
-                <p>Serão sorteadas aleatoriamente 10 questões sobre qualquer conteúdo do site e cinco desafios extras
+                <p>Serão sorteadas aleatoriamente 10 perguntas sobre qualquer conteúdo do site e cinco desafios extras
                     sobre conhecimento geral a cerca do Counter-Strike.</p>
-                <p>Cada questão terá cinco alternativas sendo apenas uma correta, conforme mais você acertar maior vai
+                <p>Cada pergunta terá cinco alternativas sendo apenas uma correta, conforme mais você acertar maior vai
                     ser sua colocação e melhor será seu rank!</p>
-                <p>Após selecionar uma das respostas salve a resposta antes de seguir para a próxima questão.</p>
 
-                <h3>Métricas para seu rank!</h3>
-
-                <p>20% de acertos - Prata Elite</p>
-                <p>40% de Acertos - Gold Nova</p>
-                <p>60% de Acertos - Guardian Elite</p>
-                <p>70% de Acertos - Xerife</p>
-                <p>80% de Acertos - Eagle Master</p>
-                <p>90% de ACertos - Mestre Supremo de Primeira Classe</p>
-                <p>100% de Acertos - Global Elite</p>
-
+                <div id="ranks">
+                    <img src="assets/midia/metricas.svg" alt="">
+                </div>
                 <button onclick="quiz()">Inciar Quiz!</button>
             </div>
             <div id="questoesQuiz" class="questoes">
@@ -66,19 +70,41 @@
 
                 <p>Escolha uma alternativa (Apenas uma delas está correta.)</p>
 
-                <input type="radio" name="alternativaa" value="0" id="alternativa1"><label id="lblAlt1"
-                    for="alternativa1">A) </label>
-                <input type="radio" name="alternativaa" value="1" id="alternativa2"><label id="lblAlt2"
-                    for="alternativa2">B) </label>
-                <input type="radio" name="alternativaa" value="2" id="alternativa3"><label id="lblAlt3"
-                    for="alternativa3">C) </label>
-                <input type="radio" name="alternativaa" value="3" id="alternativa4"><label id="lblAlt4"
-                    for="alternativa4">D) </label>
+                <div class="bloco">
+                    <div class="altern">
+                        <input onclick="click()" type="radio" name="alternativaa" value="0" id="alternativa1"><label
+                            id="lblAlt1" for="alternativa1">&nbsp;<b>A)</b> </label>
+                    </div>
+                    <div class="altern">
+                        <input onclick="click()" type="radio" name="alternativaa" value="1" id="alternativa2"><label
+                            id="lblAlt2" for="alternativa2">&nbsp;<b>B)</b> </label>
+                    </div>
+                    <div class="altern">
+                        <input onclick="click()" type="radio" name="alternativaa" value="2" id="alternativa3"><label
+                            id="lblAlt3" for="alternativa3">&nbsp;<b>C)</b> </label>
+                    </div>
+                    <div class="altern">
+                        <input onclick="click()" type="radio" name="alternativaa" value="3" id="alternativa4"><label
+                            id="lblAlt4" for="alternativa4">&nbsp;<b>D)</b> </label>
+                    </div>
+                </div>
 
-                <button onclick="salvar()">Salvar Resposta</button>
+                <button id="btnProx" onclick="proxQuestao()">Próxima questão!</button>
 
-                <button onclick="proxQuestao()">Próxima questão!</button>
+                <button id="btnFim" onclick="finalizarQuiz()">Finalizar Quiz!</button>
+            </div>
+            <div id="resultadosQuiz" class="resultado">
+                <h1>Parabéns por chegar ao fim do Quiz!</h1>
+                <h2>Seus Resultados foram:</h1>
+                    <div id="resultados">
 
+                    </div>
+                    <div id="rankResult">
+
+                    </div>
+
+                    <h1>Vá para o seu perfil para ver suas estatísticas atualizadas!</h1>
+                    <button onclick="ir()">IR!</button>
             </div>
         </div>
     </div>
@@ -93,17 +119,102 @@
     var alternativas = [];
     var perguntasSorteadas = [];
     var sorteados = [];
-    var perguntas = ['Em qual ano um time Brasileiro foi campeão pela primeira vez em um Major?', 'Qual era o nome do Major em que um time Brasileiro foi campeão pela Primeira vez?', 'Qual era a "Line up" (Escalação) do time Brasileiro na primeira vitória de um Major?', 'Qual foi o primeiro Major Desputado?', 'Em qual ano um major foi disputado no Brasil?', 'Quem foi campeão do primeiro major disputado?', 'Qual era o nome do jogo que iniciou toda a história do CS?', 'Qual era o nome do primeiro Mod criado por Minh Le?', 'Counter-Strike foi o nome do Mod de qual jogo?', 'Em qual ano foi lançada a primeira versão OFICIAL do Counter-Strike?', 'Quais são os jogos da franquia Counter-Strike?', 'Qual era o nome do primeiro mod que Minh Le fez para Quake?', 'Quais são os nomes dos desenvolvedores de Counter-Strike?', 'Qual empresa comprou o Mod Counter-Strike?', 'Qual foi a versão de Counter-Strike que ficou mais famosa nas Lan-Houses?', 'Quantos jogadores ativos o Counter-Strike: Global Offensive alcança mensalmente?', 'Qual é o objetivo principal no jogo Counter-Strike?', 'Quais são os nomes das equipes adversárias no Counter Strike?', 'Qual time de E-Sports tem mais Majors ganhos?', 'Quais eram as três competições mais importantes antes dos majors começarem?'];
-    var respostas = [['2006', '2015', '2012', ('2019')], ['DreamHack Winter', 'ESL One Cologne', ('PGL Major'), 'MLG Major'], [('FalleN, fer, coldzera, TACO, fnx'), 'FalleN, fer, coldzera, TACO, boltz', 'FalleN, fer, coldzera, TACO, felps', 'FalleN, fer, coldzera, TACO, zews'], [('DreamHack Winter 2013'), 'ESL One Cologne 2014', 'PGL Major Krakow 2017', 'MLG Major Championship Columbus 2016'], [('2014'), '2016', '2017', '2019'], [('Fnatic'), 'Natus Vincere', 'Virtus.pro', 'Team EnVyUs'], [('Half-Life'), 'Doom', 'Quake', 'Rocket League'], [('Navy SEALs'), 'Counter-Strike', 'Team Fortress', 'Day of Defeat'], [('Half-Life'), 'Doom', 'Quake', 'Unreal Tournament'], ['1999', '2000', ('2001'), '2002'], [('Counter-Strike 1.6, Counter-Strike: Source, Counter-Strike: Global Offensive'), 'Counter-Strike, Counter-Strike: Source, Counter-Strike: Global Offensive', 'Counter-Strike: Condition Zero, Counter-Strike: Source, Counter-Strike: Global Offensive', 'Counter-Strike 1.6, Counter-Strike: Condition Zero, Counter-Strike: Global Offensive'], [('Action Quake 2'), 'Team Fortress', 'Day of Defeat', 'Navy SEALs'], [('Minh Le e Jess Cliffe'), 'Gabe Newell e John Romero', 'John Carmack e Cliff Bleszinski', 'Markus Persson e Tim Sweeney'], [('Valve'), 'Electronic Arts', 'Blizzard Entertainment', 'Ubisoft'], [('Counter-Strike 1.6'), 'Counter-Strike: Source', 'Counter-Strike: Condition Zero', 'Counter-Strike: Global Offensive'], [('Milhões'), 'Centenas de milhares', 'Dezenas de milhares', 'Milhares'], [('Plantar ou desarmar a bomba'), 'Matar o máximo de inimigos', 'Resgatar reféns', 'Controlar áreas do mapa'], [('Terroristas e Contra-Terroristas'), 'CTs e Ts', 'Red e Blue', 'Alpha e Bravo'], [('Astralis'), 'Fnatic', 'Natus Vincere', 'SK Gaming'], [('ESWC, WCG, CPL'), 'ESL Pro League, DreamHack Masters, Intel Extreme Masters', 'Fragbite Masters, ECS, Blast Pro Series', 'FACEIT Major, ELEAGUE Major, PGL Major']];
-    var respostasCorretas = ['2019', 'PGL Major', 'FalleN, fer, coldzera, TACO, fnx', 'DreamHack Winter 2013', '2014', 'Fnatic', 'Half-Life', 'Navy SEALs', 'Quake', '2001', 'Counter-Strike 1.6, Counter-Strike: Source, Counter-Strike: Global Offensive', 'Action Quake 2', 'Minh Le e Jess Cliffe', 'Valve', 'Counter-Strike 1.6', 'Milhões', 'Plantar ou desarmar a bomba', 'Terroristas e Contra-Terroristas', 'Astralis', 'ESWC, WCG, CPL']
+    var perguntas = [
+        'Qual era o nome do Major em que um time Brasileiro foi campeão pela Primeira vez?',
+        'Qual era a "Line up" (Escalação) do time Brasileiro na primeira vitória de um Major?',
+        'Em qual ano um major foi disputado no Brasil?',
+        'Quem foi campeão do primeiro major disputado?',
+        'Qual era o nome do jogo que iniciou toda a história do CS?',
+        'Counter-Strike foi o nome do Mod de qual jogo?',
+        'Em qual ano foi lançada a primeira versão OFICIAL (STEAM) do Counter-Strike?',
+        'Qual era o nome do primeiro mod que o criador de CS fez para Quake?',
+        'Quais são os nomes dos desenvolvedores de Counter-Strike?',
+        'Qual empresa comprou o Mod Counter-Strike?',
+        'Qual foi a versão de Counter-Strike que ficou mais famosa nas Lan-Houses?',
+        'Quantos jogadores ativos o Counter-Strike: Global Offensive alcança mensalmente?',
+        'Qual é o objetivo principal no jogo Counter-Strike?',
+        'Qual time de E-Sports tem mais Majors ganhos?',
+        'Quais eram as três competições mais importantes antes dos majors começarem?',
+
+        'Qual é o nome do mapa mais popular no modo competitivo do Counter-Strike: Global Offensive?',
+        'Qual foi o Major vencido pela equipe brasileira SK Gaming?',
+        'Qual foi o nome do primeiro torneio Major de Counter-Strike?',
+        'Qual é o nome da empresa responsável pelo desenvolvimento do Counter-Strike atualmente?',
+        'Quantas armas primárias estão disponíveis para compra no Counter-Strike: Global Offensive?',
+        'Qual é o nome do modo de jogo em que os jogadores devem resgatar reféns?',
+        'Qual é o nome da atual versão do Counter-Strike?',
+        'Quantos jogadores compõem uma equipe completa no Counter-Strike: Global Offensive?',
+        'Qual é o nome do mapa clássico do Counter-Strike com temática de escritório?',
+        'Qual é o nome do movimento em que os jogadores saltam rapidamente para frente e para os lados para desviar dos tiros inimigos?',
+        'Qual foi a primeira versão do Counter-Strike a ser lançada no Steam?'
+    ];
+
+    var respostas = [
+        ['DreamHack Winter', 'ESL One Cologne', ('MLG Colombus'), 'MLG Major'],
+        [('FalleN, fer, coldzera, TACO, fnx'), 'FalleN, fer, coldzera, TACO, boltz', 'FalleN, fer, coldzera, TACO, felps', 'FalleN, fer, coldzera, TACO, zews'],
+        [ '2016',('2022'), '2017', '2019'],
+        ['Natus Vincere', 'Virtus.pro',('Fnatic'), 'Team EnVyUs'],
+        ['Half-Life', 'Doom', ('Quake'), 'Rocket League'],
+        ['Doom', 'Quake',('Half-Life'), 'Unreal Tournament'],
+        ['1999', '2001', ('2000'), '2002'],
+        ['Action Quake 2', 'Team Fortress', 'Day of Defeat', ('Navy SEALs')],
+        ['Gabe Newell e John Romero', 'John Carmack e Cliff Bleszinski',('Minh Le e Jess Cliffe'), 'Markus Persson e Tim Sweeney'],
+        ['Electronic Arts', 'Blizzard Entertainment', 'Ubisoft',('Valve')],
+        ['Counter-Strike: Source',('Counter-Strike 1.6'), 'Counter-Strike: Condition Zero', 'Counter-Strike: Global Offensive'],
+        ['Centenas de milhares', 'Dezenas de milhares',('Milhões'), 'Milhares'],
+        ['Matar o máximo de inimigos', 'Resgatar reféns',('Plantar ou desarmar a bomba'), 'Controlar áreas do mapa'],
+        ['CTs e Ts', 'Red e Blue',('Terroristas e Contra-Terroristas'), 'Alpha e Bravo'],
+        ['Fnatic', 'Natus Vincere', 'SK Gaming',('Astralis')],
+        [('ESWC, WCG, CPL'), 'ESL Pro League, DreamHack Masters, Intel Extreme Masters', 'Fragbite Masters, ECS, Blast Pro Series', 'FACEIT Major, ELEAGUE Major, PGL Major'],
+        ['Mirage', 'Dust2', 'Inferno', 'Overpass'], // (Dust2)
+        ['PGL Major Krakow 2017', 'DreamHack Winter 2013', 'ESL One Cologne 2016', 'MLG Major Championship Columbus 2016'], // (ESL One Cologne 2016)
+        ['ESWC', 'WCG', 'CPL', 'DreamHack'], // (DreamnHack)
+        ['Electronic Arts', 'Blizzard Entertainment', 'Valve', 'Ubisoft'], // (Valve)
+        ['16', '10', '8', '24'], // (24)
+        ['Bomb Defusal', 'Arms Race', 'Danger Zone', 'Hostage Rescue'], // (Hostage Rescue)
+        ['Counter-Strike: Source', 'Counter-Strike 1.6', 'Counter-Strike: Global Offensive', 'Counter-Strike: Condition Zero'], // (Counter-Strike: Global Offensive)
+        ['5', '6', '7', '8'], // (5)
+        ['Office', 'Nuke', 'Train', 'Vertigo'], // (Office)
+        ['Strafe jumping', 'Bunny hopping', 'Crouch jumping', 'Surfing'], // (Bunny hopping)
+        ['Counter-Strike: Condition Zero', 'Counter-Strike 1.6', 'Counter-Strike: Source', 'Counter-Strike: Global Offensive'] // (Counter-Strike 1.6)
+    ];
+    var respostasCorretas = [
+        'MLG Colombus',
+        'FalleN, fer, coldzera, TACO, fnx',
+        '2022',
+        'Fnatic',
+        'Quake',
+        'Half-Life',
+        '2000',
+        'Navy SEALs',
+        'Minh Le e Jess Cliffe',
+        'Valve',
+        'Counter-Strike 1.6',
+        'Milhões',
+        'Plantar ou desarmar a bomba',
+        'Terroristas e Contra-Terroristas',
+        'Astralis',
+        'ESWC, WCG, CPL',
+        'Dust2',
+        'ESL One Cologne 2016',
+        'DreamHack',
+        'Valve',
+        '24',
+        'Hostage Rescue',
+        '5',
+        'Office',
+        'Bunny hopping',
+        'Counter-Strike 1.6'
+    ]
     var respostasCorretasSorteadas = [];
     var acertos = 0
     var erros = 0
-
+    var patente
+    var rankimg
     function sortearQuestoes() {
         var sorteou = false;
         for (; numeroDeSorteios < 10;) {
-            var sorteio = Number((Math.random() * 20).toFixed(0));
+            var sorteio = Number((Math.random() * 19).toFixed(0));
             for (var index = 0; index <= sorteados.length - 1; index++) {
                 if (sorteados[index] == sorteio) {
                     sorteou = true;
@@ -118,21 +229,21 @@
                 alternativas.push(respostas[sorteio]);
                 respostasCorretasSorteadas.push(respostasCorretas[sorteio]);
                 numeroDeSorteios++
-            } else{
+            } else {
                 sortearQuestoes()
             }
         }
     }
 
     function quiz() {
-        var sorteio = Number((Math.random() * 20).toFixed(0));
+        var sorteio = Number((Math.random() * 19).toFixed(0));
         sorteados.push(sorteio);
         perguntasSorteadas.push(perguntas[sorteio]);
         alternativas.push(respostas[sorteio]);
         respostasCorretasSorteadas.push(respostasCorretas[sorteio]);
         numeroDeSorteios++
         sortearQuestoes()
-        quizH1.innerHTML = `Questão ${contador}! ${perguntasSorteadas[contador - 1]}`;
+        quizH1.innerHTML = `<center style="color: #FE6903">Questão ${contador}!</center> <br> <center>${perguntasSorteadas[contador - 1]}</center>`;
         lblAlt1.innerHTML += `${alternativas[contador - 1][0]}`;
         lblAlt2.innerHTML += `${alternativas[contador - 1][1]}`;
         lblAlt3.innerHTML += `${alternativas[contador - 1][2]}`;
@@ -141,30 +252,122 @@
         questoesQuiz.style.display = "flex";
     }
 
-    function salvar() {
-        btnSalvar.style.display = "none"
-        var alternativaa = document.querySelector('input[name="alternativaa"]:checked').value;
-        if (alternativas[contador - 1][alternativaa] == respostasCorretasSorteadas[contador - 1]) {
-            acertos++
+    function proxQuestao() {
+        if (document.querySelector('input[name="alternativaa"]:checked') != null) {
+            quizH1.innerHTML = `<center style="color: #FE6903">Questão ${contador}!</center> <br> <center>${perguntasSorteadas[contador - 1]}</center>`;
+            var alternativaa = document.querySelector('input[name="alternativaa"]:checked').value;
+            if (contador == 9) {
+                btnFim.style.display = "block"
+                btnProx.style.display = "none"
+            }
+            if (alternativas[contador - 1][alternativaa] == respostasCorretasSorteadas[contador - 1]) {
+                acertos++
+            } else {
+                erros++
+            }
+            contador++;
+            quizH1.innerHTML = ``;
+            lblAlt1.innerHTML = `A) `;
+            lblAlt2.innerHTML = `B) `;
+            lblAlt3.innerHTML = `C) `;
+            lblAlt4.innerHTML = `D) `;
+            quizH1.innerHTML = `<center style="color: #FE6903">Questão ${contador}!</center> <br> <center>${perguntasSorteadas[contador - 1]}</center>`;
+            lblAlt1.innerHTML += `${alternativas[contador - 1][0]}`;
+            lblAlt2.innerHTML += `${alternativas[contador - 1][1]}`;
+            lblAlt3.innerHTML += `${alternativas[contador - 1][2]}`;
+            lblAlt4.innerHTML += `${alternativas[contador - 1][3]}`;
         } else {
-            erros++
+            quizH1.innerHTML = `<center style="color: #FE6903">Questão ${contador}!</center> <br> <center>${perguntasSorteadas[contador - 1]}</center>`;
+            quizH1.innerHTML += `<br><center style="color: #ff0000">ESCOLHA UMA ALTERNATIVA ANTES DE SALVAR!!</center>`
         }
     }
 
-    function proxQuestao() {
-        btnSalvar.style.display = "block"
-        contador++;
-        quizH1.innerHTML = ``;
-        lblAlt1.innerHTML = `A) `;
-        lblAlt2.innerHTML = `B) `;
-        lblAlt3.innerHTML = `C) `;
-        lblAlt4.innerHTML = `D) `;
+    function finalizarQuiz() {
+        if (document.querySelector('input[name="alternativaa"]:checked') != null) {
+            quizH1.innerHTML = `<center style="color: #FE6903">Questão ${contador}!</center> <br> <center>${perguntasSorteadas[contador - 1]}</center>`;
+            var alternativaa = document.querySelector('input[name="alternativaa"]:checked').value;
 
-        quizH1.innerHTML = `Questão ${contador}! ${perguntasSorteadas[contador - 1]}`;
-        lblAlt1.innerHTML += `${alternativas[contador - 1][0]}`;
-        lblAlt2.innerHTML += `${alternativas[contador - 1][1]}`;
-        lblAlt3.innerHTML += `${alternativas[contador - 1][2]}`;
-        lblAlt4.innerHTML += `${alternativas[contador - 1][3]}`;
+            if (alternativas[contador - 1][alternativaa] == respostasCorretasSorteadas[contador - 1]) {
+                acertos++
+            } else {
+                erros++
+            }
+        } else {
+            quizH1.innerHTML = `<center style="color: #FE6903">Questão ${contador}!</center> <br> <center>${perguntasSorteadas[contador - 1]}</center>`;
+            quizH1.innerHTML += `<br><center style="color: #ff0000">ESCOLHA UMA ALTERNATIVA ANTES DE SALVAR!!</center>`
+        }
+
+        fetch("/quiz/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                acertosServer: acertos,
+                errosServer: erros,
+                usuarioServer: sessionStorage.ID_USUARIO
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        resultadosQuiz.style.display = "flex";
+        questoesQuiz.style.display = "none";
+        resultados.innerHTML +=
+            `<p>Acertos: ${acertos}</p>
+         <p>Erros: ${erros}</p>
+         <p>Porcentagem: ${(acertos / 10) * 100}%
+        `
+        if (acertos == 0 || acertos <= 3) {
+            patente = "Silver Elite"
+            rankimg = "silverelite"
+        } else if (acertos < 6 && acertos >= 4) {
+            patente = "Gold Nova Master"
+            rankimg = "goldnovamaster"
+        } else if (acertos < 7 && acertos > 4) {
+            patente = "Master Guardian Elite"
+            rankimg = 'masterguardianelite'
+        } else if (acertos == 7) {
+            patente = "Distinguished Master Guardian"
+            rankimg = 'distinguishedmasterguardian'
+        } else if (acertos == 8) {
+            patente = "Legendary Eagle Master"
+            rankimg = 'legendaryeaglemaster'
+        } else if (acertos == 9) {
+            patente = "Supreme Master First Class"
+            rankimg = 'suprememasterfirstclass'
+        } else if (acertos == 10) {
+            patente = "Global Elite"
+            rankimg = 'globalelite'
+        }
+        sessionStorage.PATENTE_USUARIO = patente
+        sessionStorage.RANK_IMG_USUARIO = rankimg
+
+        rankResult.innerHTML += `
+        <h1>SEU NOVO RANQUEAMENTO NO SITE É!<h1>
+        <h1>${patente}!</h1>
+        <img src='${rankimg}.svg'>
+        `
+        return false;
     }
 
 </script>

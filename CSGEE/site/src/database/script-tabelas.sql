@@ -25,12 +25,12 @@ FOREIGN KEY (fkUsuario) REFERENCES Usuario (idUsuario),
 PRIMARY KEY (idFeedback, fkUsuario)
 );
 
-CREATE TABLE Tentativa(
-idTentativa INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE Quiz(
 fkUsuario INT,
 FOREIGN KEY (fkUsuario) REFERENCES Usuario (idUsuario),
 acertos INT,
-erros INT
+erros INT,
+PRIMARY KEY (fkUsuario)
 );
 
 CREATE TABLE Comentarios(

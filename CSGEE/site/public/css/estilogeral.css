@@ -11,12 +11,6 @@
     overflow: hidden;
 }
 
-.fixbar{
-    display: flex;
-    width: 100vw;
-    height: 9vh;
-}
-
 .fundologo {
     position: absolute;
     background-image: url(../assets/midia/borradoBG.svg);
@@ -41,6 +35,22 @@
     background-color: white;
 }
 
+.fixbar {
+    display: flex;
+    height: 9vh;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 2px #fe6903;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.espacamentoFixbar {
+    width: 80%;
+    height: 100%;
+}
+
 .navbar img.userImg {
     width: 100%;
     height: 100%;
@@ -60,7 +70,7 @@
 
 .navbar a {
     display: flex;
-    padding-top: 1.2% ;
+    padding-top: 1.2%;
     justify-content: center;
     border-radius: 20px;
     width: 10%;
@@ -76,6 +86,7 @@
 .navbar a.navEstilo {
     color: #fe6903;
 }
+
 .navbar a:hover {
     color: black;
     box-shadow: 1px 1px 10px black;
@@ -86,7 +97,6 @@
     font-size: 160%;
     transition: 1000ms;
 }
-
 
 .navbar div.logo {
     display: flex;
@@ -99,7 +109,7 @@
 }
 
 .navbar div.user {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     width: 20%;
@@ -114,7 +124,7 @@
     background-image: url(../assets/midia/borradoBG.svg);
     background-blend-mode: multiply;
     background-size: cover;
-    display: none;
+    display: flex;
     border-left: solid 2px #b64f0b;
     align-items: center;
     justify-content: space-evenly;
@@ -125,7 +135,7 @@
 }
 
 .navbar div.guest a {
-    padding-top: 2% ;
+    padding-top: 2%;
     border-radius: 20px;
     width: 47.5%;
     height: 60%;
@@ -161,12 +171,14 @@
     background-image: url(../assets/midia/borradoBG.svg);
     background-size: cover;
 }
+
 .navbar p {
     background-color: white;
     height: 100%;
     width: auto;
-    padding-top: 1.8% ;
+    padding-top: 1.8%;
 }
+
 .navbar div.user p {
     display: flex;
     justify-content: center;
@@ -174,4 +186,139 @@
     width: 60%;
     height: 50%;
     cursor: pointer;
+}
+
+.fixbar img.logoNav {
+    align-content: center;
+    width: 55%;
+    height: auto;
+    margin-bottom: 5%;
+    border-radius: 100px;
+}
+
+.fixbar img.userImg {
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    cursor: pointer;
+}
+
+.fixbar p {
+    background-color: white;
+    height: 100%;
+    width: auto;
+    padding-top: 1.8%;
+}
+
+.fixbar a {
+    display: flex;
+    padding-top: 1.2%;
+    justify-content: center;
+    border-radius: 20px;
+    width: 10%;
+    height: 80%;
+    color: black;
+    text-decoration: none;
+    font-size: 140%;
+    font-weight: 400;
+    background-color: white;
+    transition: 1000ms;
+}
+
+.fixbar a.navEstilo {
+    color: #fe6903;
+}
+
+.fixbar a:hover {
+    color: black;
+    box-shadow: 1px 1px 10px black;
+    transform: scale(1, 0.8);
+    width: 10%;
+    gap: 2%;
+    background-color: #fe6903;
+    font-size: 160%;
+    transition: 1000ms;
+}
+
+.fixbar div.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+    border-right: solid 2px #b64f0b;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.fixbar div.user p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 50%;
+    cursor: pointer;
+}
+
+.fixbar div.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+    font-size: 180%;
+    background-color: white;
+    border-left: solid 2px #b64f0b;
+}
+
+.fixbar div.user div {
+    width: 20%;
+    height: 75%;
+    border: solid 1px black;
+    border-radius: 100px;
+    background-blend-mode: multiply;
+    background-color: rgb(255, 255, 255);
+    background-image: url(../assets/midia/borradoBG.svg);
+    background-size: cover;
+}
+
+.fixbar div.guest {
+    background-color: rgb(66, 65, 65);
+    background-image: url(../assets/midia/borradoBG.svg);
+    background-blend-mode: multiply;
+    background-size: cover;
+    display: none;
+    border-left: solid 2px #b64f0b;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 20%;
+    height: 100%;
+    font-size: 140%;
+    background-color: white;
+}
+
+.fixbar div.guest a {
+    padding-top: 2%;
+    border-radius: 20px;
+    width: 47.5%;
+    height: 60%;
+    color: white;
+    border: solid 2px black;
+    text-decoration: none;
+    font-size: 140%;
+    font-weight: 400;
+    background-color: #fe6903;
+    transition: 1000ms;
+}
+
+.fixbar div.guest a:hover {
+    box-shadow: 1px 1px 10px #fe6903;
+    transform: scale(1, 1.2);
+    background-color: #fe6903;
+    transition: 1000ms;
+}
+
+.fixbar div.guest a.navEstilo {
+    color: #fe6903;
+    background-color: white;
+    border: solid 2px #b64f0b;
 }

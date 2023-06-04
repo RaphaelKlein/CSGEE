@@ -1,0 +1,150 @@
+.fundosite{
+    display: flex;
+    position: absolute;
+    z-index: -5;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.238);
+    background-blend-mode: multiply;
+    background-image: url(../assets/midia/borradoBG.svg);
+
+}
+.site{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 91vh;
+}
+
+.quiz{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border: solid 3px #000000;
+    border-radius: 50px;
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 60%;
+}
+
+.instrucao{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    height: 95%;
+}
+
+.questoes{
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+    height: 95%;
+}
+
+.altern{
+    display: flex;
+    width: 100%;
+    align-self: flex-start;
+}
+
+.bloco{
+    width: 90%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: solid 2px #fe6903;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 3px 3px 10px black;
+    padding-left: 40px;
+}
+
+.resultado{
+    display: none;
+    width: 90%;
+    height: 95%;
+    flex-direction: column;
+}
+
+.resultado{
+    display: none;
+    width: 90%;
+    height: 95%;
+    flex-direction: column;
+    
+}
+
+.resultado h1{
+    color: #fe6903;
+}
+
+.resultado #resultados{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 30%;
+}
+
+#btnProx{
+    display: block;
+    height: 10%;
+    width: 30%;
+    color: white;
+    background-color: #fe6903;
+    font-size: x-large;
+    cursor: pointer;
+}
+#btnFim{
+    display: none;
+    height: 10%;
+    width: 30%;
+    color: white;
+    background-color: #b95716;
+    font-size: x-large;
+    cursor: pointer;
+}
+.instrucao h1{
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    color: #fe6903;
+}
+.instrucao h3{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-self: center;
+    justify-self: center;   
+}
+
+.instrucao #ranks {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center ;
+    background-size: cover;
+}
+
+.instrucao #ranks img{
+    width: 100%;
+    height: auto;
+}
+
+.instrucao button{
+    align-self: center ;
+    height: 10%;
+    width: 30%;
+    color: white;
+    background-color: #fe6903;
+    font-size: x-large;
+    cursor: pointer;
+}
