@@ -55,7 +55,7 @@
 
                 <h1>Instruções</h1>
 
-                <p>Serão sorteadas aleatoriamente 10 perguntas sobre qualquer conteúdo do site e cinco desafios extras
+                <p>Serão sorteadas aleatoriamente 26 perguntas sobre qualquer conteúdo do site e algumas perguntas mais difíceis
                     sobre conhecimento geral a cerca do Counter-Strike.</p>
                 <p>Cada pergunta terá cinco alternativas sendo apenas uma correta, conforme mais você acertar maior vai
                     ser sua colocação e melhor será seu rank!</p>
@@ -135,7 +135,6 @@
         'Qual é o objetivo principal no jogo Counter-Strike?',
         'Qual time de E-Sports tem mais Majors ganhos?',
         'Quais eram as três competições mais importantes antes dos majors começarem?',
-
         'Qual é o nome do mapa mais popular no modo competitivo do Counter-Strike: Global Offensive?',
         'Qual foi o Major vencido pela equipe brasileira SK Gaming?',
         'Qual foi o nome do primeiro torneio Major de Counter-Strike?',
@@ -163,12 +162,11 @@
         ['Counter-Strike: Source',('Counter-Strike 1.6'), 'Counter-Strike: Condition Zero', 'Counter-Strike: Global Offensive'],
         ['Centenas de milhares', 'Dezenas de milhares',('Milhões'), 'Milhares'],
         ['Matar o máximo de inimigos', 'Resgatar reféns',('Plantar ou desarmar a bomba'), 'Controlar áreas do mapa'],
-        ['CTs e Ts', 'Red e Blue',('Terroristas e Contra-Terroristas'), 'Alpha e Bravo'],
         ['Fnatic', 'Natus Vincere', 'SK Gaming',('Astralis')],
         [('ESWC, WCG, CPL'), 'ESL Pro League, DreamHack Masters, Intel Extreme Masters', 'Fragbite Masters, ECS, Blast Pro Series', 'FACEIT Major, ELEAGUE Major, PGL Major'],
         ['Mirage', 'Dust2', 'Inferno', 'Overpass'], // (Dust2)
         ['PGL Major Krakow 2017', 'DreamHack Winter 2013', 'ESL One Cologne 2016', 'MLG Major Championship Columbus 2016'], // (ESL One Cologne 2016)
-        ['ESWC', 'WCG', 'CPL', 'DreamHack'], // (DreamnHack)
+        ['ESWC', 'WCG', 'CPL', 'DreamHack'], // (DreamHack)
         ['Electronic Arts', 'Blizzard Entertainment', 'Valve', 'Ubisoft'], // (Valve)
         ['16', '10', '8', '24'], // (24)
         ['Bomb Defusal', 'Arms Race', 'Danger Zone', 'Hostage Rescue'], // (Hostage Rescue)
@@ -192,7 +190,6 @@
         'Counter-Strike 1.6',
         'Milhões',
         'Plantar ou desarmar a bomba',
-        'Terroristas e Contra-Terroristas',
         'Astralis',
         'ESWC, WCG, CPL',
         'Dust2',
@@ -201,6 +198,7 @@
         'Valve',
         '24',
         'Hostage Rescue',
+        'Counter-Strike: Global Offensive',
         '5',
         'Office',
         'Bunny hopping',
@@ -213,8 +211,8 @@
     var rankimg
     function sortearQuestoes() {
         var sorteou = false;
-        for (; numeroDeSorteios < 10;) {
-            var sorteio = Number((Math.random() * 19).toFixed(0));
+        for (; numeroDeSorteios < 26;) {
+            var sorteio = Number((Math.random() * 25).toFixed(0));
             for (var index = 0; index <= sorteados.length - 1; index++) {
                 if (sorteados[index] == sorteio) {
                     sorteou = true;
@@ -236,7 +234,7 @@
     }
 
     function quiz() {
-        var sorteio = Number((Math.random() * 19).toFixed(0));
+        var sorteio = Number((Math.random() * 25).toFixed(0));
         sorteados.push(sorteio);
         perguntasSorteadas.push(perguntas[sorteio]);
         alternativas.push(respostas[sorteio]);
@@ -256,7 +254,7 @@
         if (document.querySelector('input[name="alternativaa"]:checked') != null) {
             quizH1.innerHTML = `<center style="color: #FE6903">Questão ${contador}!</center> <br> <center>${perguntasSorteadas[contador - 1]}</center>`;
             var alternativaa = document.querySelector('input[name="alternativaa"]:checked').value;
-            if (contador == 9) {
+            if (contador == 25) {
                 btnFim.style.display = "block"
                 btnProx.style.display = "none"
             }
@@ -335,27 +333,27 @@
         resultados.innerHTML +=
             `<p>Acertos: ${acertos}</p>
          <p>Erros: ${erros}</p>
-         <p>Porcentagem: ${(acertos / 10) * 100}%
+         <p>Porcentagem: ${((acertos / 26) * 100).toFixed()}%
         `
-        if (acertos == 0 || acertos <= 3) {
+        if (acertos == 0 || acertos <= 5) {
             patente = "Silver Elite"
             rankimg = "silverelite"
-        } else if (acertos < 6 && acertos >= 4) {
+        } else if (acertos > 5 && acertos < 16) {
             patente = "Gold Nova Master"
             rankimg = "goldnovamaster"
-        } else if (acertos < 7 && acertos > 4) {
+        } else if (acertos > 15 && acertos < 21) {
             patente = "Master Guardian Elite"
             rankimg = 'masterguardianelite'
-        } else if (acertos == 7) {
+        } else if (acertos > 20 && acertos < 23) {
             patente = "Distinguished Master Guardian"
             rankimg = 'distinguishedmasterguardian'
-        } else if (acertos == 8) {
+        } else if (acertos > 22 && acertos < 25) {
             patente = "Legendary Eagle Master"
             rankimg = 'legendaryeaglemaster'
-        } else if (acertos == 9) {
+        } else if (acertos == 25) {
             patente = "Supreme Master First Class"
             rankimg = 'suprememasterfirstclass'
-        } else if (acertos == 10) {
+        } else if (acertos == 26) {
             patente = "Global Elite"
             rankimg = 'globalelite'
         }
@@ -365,7 +363,7 @@
         rankResult.innerHTML += `
         <h1>SEU NOVO RANQUEAMENTO NO SITE É!<h1>
         <h1>${patente}!</h1>
-        <img src='${rankimg}.svg'>
+        <img src='../assets/midia/${rankimg}.svg'>
         `
         return false;
     }

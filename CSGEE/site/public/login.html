@@ -24,8 +24,8 @@
             <div class="formLogin">
                 <h1>Entre na sua conta para continuar!</h1>
                 <div class="bordasLogin">
-                    <label for="login_input">Email ou Nome de Usuário:</label>
-                    <input type="text" id="login_input" placeholder="Nome do Usuário">
+                    <label for="login_input">Email:</label>
+                    <input type="text" id="email_input" placeholder="Email@Gmail.com">
                     <label for="senha_input">Senha:</label>
                     <input type="password" id="senha_input" placeholder="***********">
                     <p onclick="esqueceu()">Esqueceu a senha?</p>
@@ -113,7 +113,7 @@
 
 
     function entrar() {
-        aguardar();
+        // aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
@@ -155,7 +155,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "index.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
