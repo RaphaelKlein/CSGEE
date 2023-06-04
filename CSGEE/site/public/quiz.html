@@ -7,14 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilogeral.css">
     <link rel="stylesheet" href="css/estiloquiz.css">
+    <script src="js/funcoes.js"></script>
     <link rel="icon" href="assets/icon/favicon2.ico">
     <title>CSGEE | Quiz</title>
 </head>
 
-<body>
+<body onload="validarSessao()">
     <div class="navbar">
         <div class="fundologo"></div>
         <div class="logo"><img class="logoNav" src="assets/midia/logoColoridaNB.svg" alt=""></div>
+
         <a class="navEstilo" href="index.html">Home</a>
         <p>|</p>
         <a href="sobremim.html">Sobre Mim</a>
@@ -24,25 +26,27 @@
         <a href="origemcs.html">Origem CS</a>
         <p>|</p>
         <a class="navEstilo" href="esports.html">Origem E-Sports</a>
-        <div class="guest">
+        <div id="navGuest" class="guest">
             <a href="login.html">Entrar</a>
             <a class="navEstilo" href="cadastro.html">Cadastre-se</a>
         </div>
-        <div class="user">
-            <div><img class="userImg" src="assets/midia/logoPrincipalNB.svg" alt=""></div>
-            <p id="nome_usuario">CSGEE</p>
+
+        <div id="navUser" class="user">
+            <div><img id="navImgUser" class="userImg" src="" alt=""></div>
+            <p id="navNomeUser"></p>
         </div>
     </div>
     <div class="fixbar">
         <div class="logo"><img class="logoNav" src="assets/midia/logoColoridaNB.svg" alt=""></div>
         <div class="espacamentoFixbar"></div>
-        <div class="guest">
+        <div id="fixGuest" class="guest">
             <a href="login.html">Entrar</a>
             <a class="navEstilo" href="cadastro.html">Cadastre-se</a>
         </div>
-        <div class="user">
-            <div><img class="userImg" src="assets/midia/logoPrincipalNB.svg" alt=""></div>
-            <p id="nome_usuario">CSGEE</p>
+
+        <div id="fixUser" class="user">
+            <div><img id="fixImgUser" class="userImg" src="assets/midia/logoPrincipalNB.svg" alt=""></div>
+            <p id="fixNomeUser"></p>
         </div>
     </div>
     <div class="fundosite"></div>
@@ -55,7 +59,8 @@
 
                 <h1>Instruções</h1>
 
-                <p>Serão sorteadas aleatoriamente 26 perguntas sobre qualquer conteúdo do site e algumas perguntas mais difíceis
+                <p>Serão sorteadas aleatoriamente 26 perguntas sobre qualquer conteúdo do site e algumas perguntas mais
+                    difíceis
                     sobre conhecimento geral a cerca do Counter-Strike.</p>
                 <p>Cada pergunta terá cinco alternativas sendo apenas uma correta, conforme mais você acertar maior vai
                     ser sua colocação e melhor será seu rank!</p>
@@ -94,17 +99,17 @@
                 <button id="btnFim" onclick="finalizarQuiz()">Finalizar Quiz!</button>
             </div>
             <div id="resultadosQuiz" class="resultado">
-                <h1>Parabéns por chegar ao fim do Quiz!</h1>
+                <h1>Parabéns por finalizar o Quiz!</h1>
                 <h2>Seus Resultados foram:</h2>
-                    <div id="resultados">
+                <div id="resultados">
 
-                    </div>
-                    <div id="rankResult">
+                </div>
+                <div id="rankResult">
 
-                    </div>
+                </div>
 
-                    <h1>Vá para o seu perfil para ver suas estatísticas atualizadas!</h1>
-                    <button onclick="ir()">IR!</button>
+                <h3>Vá para o seu perfil para ver suas estatísticas atualizadas!</h3>
+                <button onclick="ir()">IR!</button>
             </div>
         </div>
     </div>
@@ -113,6 +118,84 @@
 </html>
 
 <script>
+
+    var idUsuarioVar = sessionStorage.ID_USUARIO
+
+    fetch("/quiz/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idServer: idUsuarioVar,
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+            if (resposta.length != 0) {
+                instrucoes.style.display = 'none'
+                questoesQuiz.style.display = 'none'
+                resultadosQuiz.style.display = 'flex'
+                resposta.json().then(json => {
+                    var acertos = json.acertos
+                    var erros = json.erros
+                    resultados.innerHTML += `
+                    <p>Quantidade de Acertos: <h4>${acertos}</h4></p>
+                    <p>Quantidade de Erros: <h4>${erros}</h4></p>
+                    <p>Precisão em porcentagem: <h4>${((acertos / 26) * 100).toFixed()}%</h4>
+                    `
+                    if (acertos == 0 || acertos <= 5) {
+                        patente = "Silver Elite"
+                        rankimg = "silverelite"
+                    } else if (acertos > 5 && acertos < 16) {
+                        patente = "Gold Nova Master"
+                        rankimg = "goldnovamaster"
+                    } else if (acertos > 15 && acertos < 21) {
+                        patente = "Master Guardian Elite"
+                        rankimg = 'masterguardianelite'
+                    } else if (acertos > 20 && acertos < 23) {
+                        patente = "Distinguished Master Guardian"
+                        rankimg = 'distinguishedmasterguardian'
+                    } else if (acertos > 22 && acertos < 25) {
+                        patente = "Legendary Eagle Master"
+                        rankimg = 'legendaryeaglemaster'
+                    } else if (acertos == 25) {
+                        patente = "Supreme Master First Class"
+                        rankimg = 'suprememasterfirstclass'
+                    } else if (acertos == 26) {
+                        patente = "Global Elite"
+                        rankimg = 'globalelite'
+                    }
+                    sessionStorage.PATENTE_USUARIO = patente
+                    sessionStorage.RANK_IMG_USUARIO = rankimg
+
+                    rankResult.innerHTML += `
+        <h1>SEU RANQUEAMENTO NO SITE É!<h1>
+        <h2>${patente}!</h2>
+        <img id="imgrank" src='../assets/midia/${rankimg}.svg'>
+        `
+                });
+            }
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+            });
+
+        } else {
+
+            console.log("Houve um erro ao tentar autenticar o Quizz!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+                finalizarAguardar(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
 
     var numeroDeSorteios = 0
     var contador = 1;
@@ -151,18 +234,18 @@
     var respostas = [
         ['DreamHack Winter', 'ESL One Cologne', ('MLG Colombus'), 'MLG Major'],
         [('FalleN, fer, coldzera, TACO, fnx'), 'FalleN, fer, coldzera, TACO, boltz', 'FalleN, fer, coldzera, TACO, felps', 'FalleN, fer, coldzera, TACO, zews'],
-        [ '2016',('2022'), '2017', '2019'],
-        ['Natus Vincere', 'Virtus.pro',('Fnatic'), 'Team EnVyUs'],
+        ['2016', ('2022'), '2017', '2019'],
+        ['Natus Vincere', 'Virtus.pro', ('Fnatic'), 'Team EnVyUs'],
         ['Half-Life', 'Doom', ('Quake'), 'Rocket League'],
-        ['Doom', 'Quake',('Half-Life'), 'Unreal Tournament'],
+        ['Doom', 'Quake', ('Half-Life'), 'Unreal Tournament'],
         ['1999', '2001', ('2000'), '2002'],
         ['Action Quake 2', 'Team Fortress', 'Day of Defeat', ('Navy SEALs')],
-        ['Gabe Newell e John Romero', 'John Carmack e Cliff Bleszinski',('Minh Le e Jess Cliffe'), 'Markus Persson e Tim Sweeney'],
-        ['Electronic Arts', 'Blizzard Entertainment', 'Ubisoft',('Valve')],
-        ['Counter-Strike: Source',('Counter-Strike 1.6'), 'Counter-Strike: Condition Zero', 'Counter-Strike: Global Offensive'],
-        ['Centenas de milhares', 'Dezenas de milhares',('Milhões'), 'Milhares'],
-        ['Matar o máximo de inimigos', 'Resgatar reféns',('Plantar ou desarmar a bomba'), 'Controlar áreas do mapa'],
-        ['Fnatic', 'Natus Vincere', 'SK Gaming',('Astralis')],
+        ['Gabe Newell e John Romero', 'John Carmack e Cliff Bleszinski', ('Minh Le e Jess Cliffe'), 'Markus Persson e Tim Sweeney'],
+        ['Electronic Arts', 'Blizzard Entertainment', 'Ubisoft', ('Valve')],
+        ['Counter-Strike: Source', ('Counter-Strike 1.6'), 'Counter-Strike: Condition Zero', 'Counter-Strike: Global Offensive'],
+        ['Centenas de milhares', 'Dezenas de milhares', ('Milhões'), 'Milhares'],
+        ['Matar o máximo de inimigos', 'Resgatar reféns', ('Plantar ou desarmar a bomba'), 'Controlar áreas do mapa'],
+        ['Fnatic', 'Natus Vincere', 'SK Gaming', ('Astralis')],
         [('ESWC, WCG, CPL'), 'ESL Pro League, DreamHack Masters, Intel Extreme Masters', 'Fragbite Masters, ECS, Blast Pro Series', 'FACEIT Major, ELEAGUE Major, PGL Major'],
         ['Mirage', 'Dust2', 'Inferno', 'Overpass'], // (Dust2)
         ['PGL Major Krakow 2017', 'DreamHack Winter 2013', 'ESL One Cologne 2016', 'MLG Major Championship Columbus 2016'], // (ESL One Cologne 2016)
@@ -331,9 +414,9 @@
         resultadosQuiz.style.display = "flex";
         questoesQuiz.style.display = "none";
         resultados.innerHTML +=
-            `<p>Acertos: ${acertos}</p>
-         <p>Erros: ${erros}</p>
-         <p>Porcentagem: ${((acertos / 26) * 100).toFixed()}%
+            `<p>Quantidade de Acertos: <h4>${acertos}</h4></p>
+         <p>Quantidade de Erros: <h4>${erros}</h4></p>
+         <p>Precisão em porcentagem: <h4>${((acertos / 26) * 100).toFixed()}%</h4>
         `
         if (acertos == 0 || acertos <= 5) {
             patente = "Silver Elite"
