@@ -71,12 +71,17 @@
     flex-direction: column;
 }
 
-.resultado{
+.resultadosQuiz{
     display: none;
     width: 90%;
     height: 95%;
     flex-direction: column;
-    
+}
+
+.resultadosQuiz #imgrank
+
+.resultadosQuiz h2{
+    color: black;
 }
 
 .resultado h1{

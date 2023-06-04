@@ -95,7 +95,7 @@
             </div>
             <div id="resultadosQuiz" class="resultado">
                 <h1>Parabéns por chegar ao fim do Quiz!</h1>
-                <h2>Seus Resultados foram:</h1>
+                <h2>Seus Resultados foram:</h2>
                     <div id="resultados">
 
                     </div>
@@ -362,8 +362,8 @@
 
         rankResult.innerHTML += `
         <h1>SEU NOVO RANQUEAMENTO NO SITE É!<h1>
-        <h1>${patente}!</h1>
-        <img src='../assets/midia/${rankimg}.svg'>
+        <h2>${patente}!</h2>
+        <img id="imgrank" src='../assets/midia/${rankimg}.svg'>
         `
         return false;
     }
