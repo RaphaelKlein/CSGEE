@@ -8,10 +8,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Stratum2;
-    overflow: hidden;
 }
 
 .fundologo {
+    overflow: hidden;
     position: absolute;
     background-image: url(../assets/midia/borradoBG.svg);
     background-color: rgba(0, 0, 0, 0.295);
@@ -23,6 +23,7 @@
 }
 
 .navbar {
+    overflow: hidden;
     position: absolute;
     z-index: 2;
     display: flex;
@@ -33,9 +34,11 @@
     align-items: center;
     border-bottom: solid 2px #fe6903;
     background-color: white;
+    box-shadow: 0px 3px 15px;
 }
 
 .fixbar {
+    overflow: hidden;
     display: flex;
     height: 9vh;
     width: 100vw;
@@ -47,11 +50,13 @@
 }
 
 .espacamentoFixbar {
+    overflow: hidden;
     width: 80%;
     height: 100%;
 }
 
 .navbar img.userImg {
+    overflow: hidden;
     width: 100%;
     height: 100%;
     align-content: center;
@@ -59,6 +64,7 @@
 }
 
 .navbar img.logoNav {
+    overflow: hidden;
     position: absolute;
     z-index: 1;
     align-content: center;
@@ -69,6 +75,7 @@
 }
 
 .navbar a {
+    overflow: hidden;
     display: flex;
     padding-top: 1.2%;
     justify-content: center;
@@ -84,10 +91,12 @@
 }
 
 .navbar a.navEstilo {
+    overflow: hidden;
     color: #fe6903;
 }
 
 .navbar a:hover {
+    overflow: hidden;
     color: black;
     box-shadow: 1px 1px 10px black;
     transform: scale(1, 0.8);
@@ -99,6 +108,7 @@
 }
 
 .navbar div.logo {
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -109,6 +119,7 @@
 }
 
 .navbar div.user {
+    overflow: hidden;
     display: none;
     align-items: center;
     justify-content: center;
@@ -120,6 +131,7 @@
 }
 
 .navbar div.guest {
+    overflow: hidden;
     background-color: rgb(66, 65, 65);
     background-image: url(../assets/midia/borradoBG.svg);
     background-blend-mode: multiply;
@@ -135,6 +147,7 @@
 }
 
 .navbar div.guest a {
+    overflow: hidden;
     padding-top: 2%;
     border-radius: 20px;
     width: 47.5%;
@@ -149,6 +162,7 @@
 }
 
 .navbar div.guest a:hover {
+    overflow: hidden;
     box-shadow: 1px 1px 10px #fe6903;
     transform: scale(1, 1.2);
     background-color: #fe6903;
@@ -156,12 +170,14 @@
 }
 
 .navbar div.guest a.navEstilo {
+    overflow: hidden;
     color: #fe6903;
     background-color: white;
     border: solid 2px #b64f0b;
 }
 
 .navbar div.user div {
+    overflow: hidden;
     width: 20%;
     height: 90%;
     border: solid 1px black;
@@ -173,6 +189,7 @@
 }
 
 .navbar p {
+    overflow: hidden;
     background-color: white;
     height: 100%;
     width: auto;
@@ -180,6 +197,7 @@
 }
 
 .navbar div.user p {
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,6 +207,7 @@
 }
 
 .fixbar img.logoNav {
+    overflow: hidden;
     align-content: center;
     width: 55%;
     height: auto;
@@ -197,6 +216,7 @@
 }
 
 .fixbar img.userImg {
+    overflow: hidden;
     width: 100%;
     height: 100%;
     align-content: center;
@@ -204,6 +224,7 @@
 }
 
 .fixbar p {
+    overflow: hidden;
     background-color: white;
     height: 100%;
     width: auto;
@@ -211,6 +232,7 @@
 }
 
 .fixbar a {
+    overflow: hidden;
     display: flex;
     padding-top: 1.2%;
     justify-content: center;
@@ -226,10 +248,12 @@
 }
 
 .fixbar a.navEstilo {
+    overflow: hidden;
     color: #fe6903;
 }
 
 .fixbar a:hover {
+    overflow: hidden;
     color: black;
     box-shadow: 1px 1px 10px black;
     transform: scale(1, 0.8);
@@ -241,6 +265,7 @@
 }
 
 .fixbar div.logo {
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,6 +276,7 @@
 }
 
 .fixbar div.user p {
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -260,6 +286,7 @@
 }
 
 .fixbar div.user {
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,6 +298,7 @@
 }
 
 .fixbar div.user div {
+    overflow: hidden;
     width: 20%;
     height: 75%;
     border: solid 1px black;
@@ -282,6 +310,7 @@
 }
 
 .fixbar div.guest {
+    overflow: hidden;
     background-color: rgb(66, 65, 65);
     background-image: url(../assets/midia/borradoBG.svg);
     background-blend-mode: multiply;
@@ -297,6 +326,7 @@
 }
 
 .fixbar div.guest a {
+    overflow: hidden;
     padding-top: 2%;
     border-radius: 20px;
     width: 47.5%;
@@ -311,6 +341,7 @@
 }
 
 .fixbar div.guest a:hover {
+    overflow: hidden;
     box-shadow: 1px 1px 10px #fe6903;
     transform: scale(1, 1.2);
     background-color: #fe6903;
@@ -318,6 +349,7 @@
 }
 
 .fixbar div.guest a.navEstilo {
+    overflow: hidden;
     color: #fe6903;
     background-color: white;
     border: solid 2px #b64f0b;

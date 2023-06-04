@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/estiloquiz.css">
     <script src="js/funcoes.js"></script>
     <link rel="icon" href="assets/icon/favicon2.ico">
-    <title>CSGEE | Quiz</title>
+    <title>Quiz | CSGEE</title>
 </head>
 
 <body onload="validarSessao()">
@@ -32,8 +32,8 @@
         </div>
 
         <div id="navUser" class="user">
-            <div><img id="navImgUser" class="userImg" src="" alt=""></div>
-            <p id="navNomeUser"></p>
+            <div onclick="profile()"><img id="navImgUser" class="userImg" src="" alt=""></div>
+            <p onclick="profile()" id="navNomeUser"></p>
         </div>
     </div>
     <div class="fixbar">
@@ -45,10 +45,12 @@
         </div>
 
         <div id="fixUser" class="user">
-            <div><img id="fixImgUser" class="userImg" src="assets/midia/logoPrincipalNB.svg" alt=""></div>
-            <p id="fixNomeUser"></p>
+            <div onclick="profile()"><img id="fixImgUser" class="userImg" src="assets/midia/logoPrincipalNB.svg" alt="">
+            </div>
+            <p onclick="profile()" id="fixNomeUser"></p>
         </div>
     </div>
+    
     <div class="fundosite"></div>
     <div class="site">
         <div class="quiz">
@@ -65,7 +67,7 @@
                 <p>Cada pergunta terá cinco alternativas sendo apenas uma correta, conforme mais você acertar maior vai
                     ser sua colocação e melhor será seu rank!</p>
 
-                <div id="ranks">
+                <div id="metricas">
                     <img src="assets/midia/metricas.svg" alt="">
                 </div>
                 <button onclick="quiz()">Inciar Quiz!</button>
@@ -109,7 +111,7 @@
                 </div>
 
                 <h3>Vá para o seu perfil para ver suas estatísticas atualizadas!</h3>
-                <button onclick="ir()">IR!</button>
+                <button onclick="profile()">IR!</button>
             </div>
         </div>
     </div>
@@ -119,6 +121,8 @@
 
 <script>
 
+        document.getElementById("navImgUser").src = `${sessionStorage.IMG_USUARIO}`
+        document.getElementById("fixImgUser").src = `${sessionStorage.IMG_USUARIO}`
     var idUsuarioVar = sessionStorage.ID_USUARIO
 
     fetch("/quiz/autenticar", {
@@ -139,6 +143,8 @@
                 questoesQuiz.style.display = 'none'
                 resultadosQuiz.style.display = 'flex'
                 resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
                     var acertos = json.acertos
                     var erros = json.erros
                     resultados.innerHTML += `
@@ -172,24 +178,19 @@
                     sessionStorage.RANK_IMG_USUARIO = rankimg
 
                     rankResult.innerHTML += `
-        <h1>SEU RANQUEAMENTO NO SITE É!<h1>
-        <h2>${patente}!</h2>
-        <img id="imgrank" src='../assets/midia/${rankimg}.svg'>
-        `
+                    <h1>SEU RANQUEAMENTO NO SITE É!<h1>
+                     <h2>${patente}!</h2>
+                     <img id="imgrank" src='../assets/midia/${rankimg}.svg'>
+                    `
                 });
             }
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-            });
-
         } else {
 
             console.log("Houve um erro ao tentar autenticar o Quizz!");
 
             resposta.text().then(texto => {
                 console.error(texto);
-                finalizarAguardar(texto);
+                // finalizarAguardar(texto);
             });
         }
 

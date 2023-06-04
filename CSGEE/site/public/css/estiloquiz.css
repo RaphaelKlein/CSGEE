@@ -1,3 +1,7 @@
+body{
+    overflow: hidden;
+}
+
 .fundosite{
     display: flex;
     position: absolute;
@@ -78,7 +82,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     width: 40%;
-    height: 30%;
+    height: 35%;
     border: solid 1px #fe6903;
     box-shadow: 1px 1px 10px     #000000;
     border-radius: 10px;
@@ -161,7 +165,7 @@ font-size: x-large;
     justify-self: center;   
 }
 
-.instrucao #ranks {
+.instrucao #metricas {
     height: 50%;
     width: 100%;
     display: flex;
@@ -172,9 +176,9 @@ font-size: x-large;
     background-size: cover;
 }
 
-.instrucao #ranks img{
-    width: 100%;
-    height: auto;
+.instrucao #metricas img{
+    width: auto;
+    height: 100%;
 }
 
 .instrucao button{

@@ -13,7 +13,8 @@ CREATE TABLE Usuario(
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nomeUsuario VARCHAR(20) NOT NULL,
 email VARCHAR(100) NOT NULL,
-senha VARCHAR(45) NOT NULL
+senha VARCHAR(45) NOT NULL,
+imagem varchar(16000)
 );
 
 CREATE TABLE Feedback(

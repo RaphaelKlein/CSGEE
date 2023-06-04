@@ -1,14 +1,12 @@
 // sessão
 function validarSessao() {
     // aguardar();
-    
+
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
 
-    var b_usuario = document.getElementById("b_usuario");
-
     if (email != null && nome != null) {
-        window.alert(`Seja bem-vindo, ${nome}!`);
+        // window.alert(`Seja bem-vindo, ${nome}!`);
         navNomeUser.innerHTML = sessionStorage.NOME_USUARIO
         fixNomeUser.innerHTML = sessionStorage.NOME_USUARIO
         navUser.style.display = 'flex'
@@ -22,6 +20,21 @@ function validarSessao() {
     }
 }
 
+function validarSessaoHome(){
+    var email = sessionStorage.EMAIL_USUARIO;
+    var nome = sessionStorage.NOME_USUARIO;
+
+    if (email != null && nome != null) {
+        // window.alert(`Seja bem-vindo, ${nome}!`);
+        navNomeUser.innerHTML = sessionStorage.NOME_USUARIO
+        fixNomeUser.innerHTML = sessionStorage.NOME_USUARIO
+        navUser.style.display = 'flex'
+        fixUser.style.display = 'flex'
+        navGuest.style.display = 'none'
+        fixGuest.style.display = 'none'
+    }
+}
+
 function limparSessao() {
     // aguardar();
     sessionStorage.clear();
@@ -30,21 +43,21 @@ function limparSessao() {
 }
 
 // carregamento (loading)
-function aguardar() {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "flex";
-}
+// function aguardar() {
+//     var divAguardar = document.getElementById("div_aguardar");
+//     divAguardar.style.display = "flex";
+// }
 
-function finalizarAguardar(texto) {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "none";
+// function finalizarAguardar(texto) {
+//     var divAguardar = document.getElementById("div_aguardar");
+//     divAguardar.style.display = "none";
 
-    var divErrosLogin = document.getElementById("div_erros_login");
-    if (texto) {
-        divErrosLogin.style.display = "flex";
-        divErrosLogin.innerHTML = texto;
-    }
-}
+//     var divErrosLogin = document.getElementById("div_erros_login");
+//     if (texto) {
+//         divErrosLogin.style.display = "flex";
+//         divErrosLogin.innerHTML = texto;
+//     }
+// }
 
 
 // modal
@@ -58,3 +71,6 @@ function fecharModal() {
     divModal.style.display = "none";
 }
 
+function profile() {
+    window.location = "profile.html"
+}
