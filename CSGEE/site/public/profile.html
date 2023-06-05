@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estiloprofile.css">
-    <link rel="stylesheet" href="css/estilogeral.css">
     <link rel="icon" href="assets/icon/favicon2.ico">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/funcoes.js"></script>
@@ -17,38 +16,24 @@
     <div class="navbar">
         <div class="fundologo"></div>
         <div class="logo"><img class="logoNav" src="assets/midia/logoColoridaNB.svg" alt=""></div>
-
-        <a class="navEstilo" href="index.html">Home</a>
-        <p>|</p>
-        <a href="sobremim.html">Sobre Mim</a>
-        <p>|</p>
-        <a class="navEstilo" href="quiz.html">Quiz</a>
-        <p>|</p>
-        <a href="origemcs.html">Origem CS</a>
-        <p>|</p>
-        <a class="navEstilo" href="esports.html">Origem E-Sports</a>
+        <div class="links">
+            <a class="navEstilo" href="index.html">Home</a>
+            <p>|</p>
+            <a href="sobremim.html">Sobre Mim</a>
+            <p>|</p>
+            <a class="navEstilo" href="quiz.html">Quiz</a>
+            <p>|</p>
+            <a href="origemcs.html">Origem CS</a>
+            <p>|</p>
+            <a class="navEstilo" href="esports.html">E-Sports</a>
+        </div>
         <div id="navGuest" class="guest">
             <a href="login.html">Entrar</a>
             <a class="navEstilo" href="cadastro.html">Cadastre-se</a>
         </div>
-
         <div id="navUser" class="user">
             <div onclick="profile()"><img id="navImgUser" class="userImg" src="" alt=""></div>
             <p onclick="profile()" id="navNomeUser"></p>
-        </div>
-    </div>
-    <div class="fixbar">
-        <div class="logo"><img class="logoNav" src="assets/midia/logoColoridaNB.svg" alt=""></div>
-        <div class="espacamentoFixbar"></div>
-        <div id="fixGuest" class="guest">
-            <a href="login.html">Entrar</a>
-            <a class="navEstilo" href="cadastro.html">Cadastre-se</a>
-        </div>
-
-        <div id="fixUser" class="user">
-            <div onclick="profile()"><img id="fixImgUser" class="userImg" src="assets/midia/logoPrincipalNB.svg" alt="">
-            </div>
-            <p onclick="profile()" id="fixNomeUser"></p>
         </div>
     </div>
 
@@ -102,10 +87,13 @@
         <div class="divisoriaH"></div>
         <div class="containerV">
             <div class="estatisticas">
+                <div id="dashboard">
+                    <h1>Estatísticas detalhadas do quiz.</h1>
+
+                </div>
                 <canvas id="graficos">
 
                 </canvas>
-                <canvas id="graficos2"></canvas>
             </div>
         </div>
         <div class="divisoriaH"></div>
@@ -121,7 +109,7 @@
 
                 <h2>Avalie meu trabalho!</h2>
                 <h1>
-                NOTA 0 <input type="range" id="avaliacaoFeedback" max="10" min="0"> NOTA 10
+                    NOTA 0 <input type="range" id="avaliacaoFeedback" max="10" min="0"> NOTA 10
                 </h1>
                 <button id="btnFBK" onclick="enviarFeedback()">Enviar Feedback!</button>
             </div>
@@ -132,33 +120,32 @@
 </html>
 <script>
     titulo.innerHTML = `${sessionStorage.NOME_USUARIO} | CSGEE`
-        document.getElementById("imgUser").src = `${sessionStorage.IMG_USUARIO}`
-        document.getElementById("navImgUser").src = `${sessionStorage.IMG_USUARIO}`
-        document.getElementById("fixImgUser").src = `${sessionStorage.IMG_USUARIO}`
-        nomeUser.innerHTML = sessionStorage.NOME_USUARIO
-        if(sessionStorage.PATENTE_USUARIO  == undefined || sessionStorage.PATENTE_USUARIO == null){
-            rank.innerHTML = `<center>Sem Rank<br><p style="font-size: small; color: Red">Realize o Quiz para descobrir seu rank!</p></center>`
-        } else{
-            rank.innerHTML = sessionStorage.PATENTE_USUARIO
-        }
-    
-        if(sessionStorage.RANK_IMG_USUARIO  == undefined || sessionStorage.RANK_IMG_USUARIO == null){
-            document.getElementById("imgrank").src =`assets/midia/unranked.svg`
-        } else{
-            document.getElementById("imgrank").src = `assets/midia/${sessionStorage.RANK_IMG_USUARIO}.svg`;
-        }
+    document.getElementById("imgUser").src = `${sessionStorage.IMG_USUARIO}`
+    document.getElementById("navImgUser").src = `${sessionStorage.IMG_USUARIO}`
+    nomeUser.innerHTML = sessionStorage.NOME_USUARIO
+    if (sessionStorage.PATENTE_USUARIO == undefined || sessionStorage.PATENTE_USUARIO == null) {
+        rank.innerHTML = `<center>Sem Rank<br><p style="font-size: small; color: Red">Realize o Quiz para descobrir seu rank!</p></center>`
+    } else {
+        rank.innerHTML = sessionStorage.PATENTE_USUARIO
+    }
+
+    if (sessionStorage.RANK_IMG_USUARIO == undefined || sessionStorage.RANK_IMG_USUARIO == null) {
+        document.getElementById("imgrank").src = `assets/midia/unranked.svg`
+    } else {
+        document.getElementById("imgrank").src = `assets/midia/${sessionStorage.RANK_IMG_USUARIO}.svg`;
+    }
 
 
-        
+
     var idUsuarioVar = sessionStorage.ID_USUARIO
-    
+
 
     function sair() {
         btnSair.style.display = 'none'
         confirma.style.display = 'flex'
     }
 
-    function cancelar(){
+    function cancelar() {
         btnSair.style.display = 'block'
         confirma.style.display = 'none'
     }
@@ -224,7 +211,7 @@
 
                 sessionStorage.IMG_USUARIO = imgVar
 
-                
+
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
@@ -347,10 +334,10 @@
         pegarDados()
     }
 
-   function enviarFeedback(){
-    var comentarioVar = comentarioFeedback.value
-    var avaliacaoVar = avaliacaoFeedback.value
-    fetch("/perfil/enviarFeedback", {
+    function enviarFeedback() {
+        var comentarioVar = comentarioFeedback.value
+        var avaliacaoVar = avaliacaoFeedback.value
+        fetch("/perfil/enviarFeedback", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -365,9 +352,8 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "block";
 
-                mensagem_erro.innerHTML = "Feedback Enviado!";
+
 
                 // finalizarAguardar();
             } else {
@@ -381,8 +367,8 @@
         return false;
     }
 
-   ( function verificarFeedback(){
-    fetch("./perfil/verificar", {
+    function verificarFeedback() {
+        fetch("./perfil/verificar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -395,16 +381,17 @@
 
             if (resposta.ok) {
                 console.log(resposta);
-                if (resposta.length != 0) {
 
-                    btnFBK.style.display = "none"
-                    feedback.style.display = `none`
-                    arigato.style.display = `FLEX`
-                    resposta.json().then(json => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
-                    });
-                }
+                btnFBK.style.display = "none"
+                feedback.style.display = `none`
+                arigato.style.display = `flex`
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                });
+
             } else {
 
                 console.log("Houve um erro ao tentar autenticar o Quizz!");
@@ -418,60 +405,93 @@
         }).catch(function (erro) {
             console.log(erro);
         })
-    })()
-    
-
-(function plotarGrafico(){
-var canva = document.getElementById("graficos");
-
-   var barras = new Chart(canva, {
-    type: 'bar',
-    data: {
-      labels: [],
-      datasets: [{
-        label: 'Estatísticas do quizz',
-        data: [],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
     }
-  });
 
-  pinto.data.labels.push("SE","GNM","MGE","DMG","LGM","SMFC","GE")
-  pinto.data.datasets[0].data.push(2,3)
-  pinto.update()
+    verificarFeedback()
 
-  var canva2 = document.getElementById("graficos2");
+    function plotarDonut() {
+        fetch("/perfil/pegarQuiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idServer: idUsuarioVar,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!");
 
-   var pinto2 = new Chart(canva2, {
-    type: 'doughnut',
-    data: {
-      labels: [],
-      datasets: [{
-          label: 'Estatísticas do quizz',
-          backgroundColor: ['#FE6903','#000000'],
-        data: [],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
+            if (resposta.ok) {
+                console.log(resposta);
+                if (resposta.length != 0) {
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        var acertos = json.acertos;
+                        var erros = json.erros;
+                        var porcentagem = (acertos / 26) * 100;
+                        if (acertos == 0 || acertos <= 5) {
+                            patente = "Silver Elite";
+                            rankimg = "silverelite";
+                        } else if (acertos > 5 && acertos < 16) {
+                            patente = "Gold Nova Master";
+                            rankimg = "goldnovamaster";
+                        } else if (acertos > 15 && acertos < 21) {
+                            patente = "Master Guardian Elite";
+                            rankimg = "masterguardianelite";
+                        } else if (acertos > 20 && acertos < 23) {
+                            patente = "Distinguished Master Guardian";
+                            rankimg = "distinguishedmasterguardian";
+                        } else if (acertos > 22 && acertos < 25) {
+                            patente = "Legendary Eagle Master";
+                            rankimg = "legendaryeaglemaster";
+                        } else if (acertos == 25) {
+                            patente = "Supreme Master First Class";
+                            rankimg = "suprememasterfirstclass";
+                        } else if (acertos == 26) {
+                            patente = "Global Elite";
+                            rankimg = "globalelite";
+                        }
+                        sessionStorage.PATENTE_USUARIO = patente;
+                        sessionStorage.RANK_IMG_USUARIO = rankimg;
+
+                        // Chart Rendering
+                        var canva = document.getElementById("graficos");
+
+                        var donut = new Chart(canva, {
+                            type: "doughnut",
+                            data: {
+                                labels: ["Acertos", "Erros"],
+                                datasets: [{
+                                    label: "Estatísticas do quiz",
+                                    backgroundColor: ["#FE6903", "#000000"],
+                                    data: [acertos, erros],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    });
+                }
+            } else {
+                console.log("Houve um erro ao tentar autenticar o Quizz!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
     }
-  });
 
-  pinto2.data.labels.push("sexo","triste")
-  pinto2.data.datasets[0].data.push(2,3)
-  pinto2.update()
-})()
+    plotarDonut();
+
 
 </script>

@@ -1,26 +1,181 @@
-body{
+body {
     overflow-x: hidden;
 }
 
-button{
+button {
     cursor: pointer;
     transition: 1000ms;
 }
 
-button:hover{
+button:hover {
     transform: translateY(-5px);
     box-shadow: 3px 3px 15px black;
     transition: 1000ms;
 }
 
-.site{
+@font-face {
+    font-family: Stratum2;
+    src: url(../assets/fonts/stratum2-regular-webfont.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Stratum2;
+}
+
+.navbar{
+    display: flex;
+    width: 100vw;
+    height: 10vh;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: #FE6903 solid 2px        ;
+}
+
+.navbar .logo{
+    display: flex;
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-image: url(../assets/midia/compostoBG.svg);
+    background-size: 120%;
+}
+
+.navbar .logo img{
+    width: 55%;
+    height: auto;
+    margin-bottom: 5%;
+}
+
+.navbar .links{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 100%;
+    flex-direction: row;
+    background-image: url(../assets/midia/compostoBG.svg);
+    background-size: cover;
+}
+
+.links a{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    width: 18%;
+    height: 80%;
+    color: black;
+    text-decoration: none;
+    font-size: 140%;
+    font-weight: 400;
+    background-color: white;
+    transition: 1000ms;
+    border: #FE6903 1px solid;
+}
+
+.navbar .navEstilo{
+    overflow: hidden;
+    color: #FE6903;
+}
+
+.guest .navEstilo{
+    background-color: #FE6903;
+    color: white;
+}
+
+.links a:hover {
+    overflow: hidden;
+    color: black;
+    box-shadow: 1px 1px 10px black;
+    transform: scale(1, 0.8);
+    width: 18%;
+    gap: 2%;
+    background-color: #fe6903;
+    font-size: 160%;
+    transition: 1000ms;
+}
+.guest{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    gap: 10px;
+    background-image: url(../assets/midia/compostoBG.svg);
+    background-size: auto;
+}
+
+.guest a{
+    overflow: hidden;
+    display: flex;
+    padding-top: 1.2%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    width: 45%;
+    height: 70%;
+    color: black;
+    text-decoration: none;
+    font-weight: 400;
+    background-color: #ffffff;
+    border: black 2px solid;
+    transition: 1000ms;
+}
+.user{
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 60px;
+    padding-right: 60px;
+    width: 20%;
+    height: 100%;
+    background-image: url(../assets/midia/compostoBG.svg);
+    background-size: auto;
+}
+
+.user div{
+    overflow: hidden;
+    display: flex;
+    width: 65px;
+    height: 65px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    border: solid 1px black;
+    background-color: white;
+
+}
+
+.user p{
+    width: 50%;
+    font-size: x-large;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.userImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    cursor: pointer;
+}
+
+
+.site {
     display: flex;
     width: 100vw;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-.containerH{
+.containerH {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -30,7 +185,7 @@ button:hover{
 
 }
 
-.containerV{
+.containerV {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,12 +194,12 @@ button:hover{
     height: 90vh;
 }
 
-#feedback{
+#feedback {
     background-image: url(../assets/midia/compostoBG.svg);
     background-size: cover;
 }
 
-.containerFix{
+.containerFix {
     display: flex;
     width: 100%;
     height: 100%;
@@ -55,12 +210,12 @@ button:hover{
     background-color: #fe6903;
 }
 
-#config{
+#config {
     background-image: url(../assets/midia/pattern4.svg);
     background-size: cover;
 }
 
-.barraLateral{
+.barraLateral {
     display: flex;
     flex-direction: column;
     width: 24.75%;
@@ -69,26 +224,26 @@ button:hover{
     background-color: rgb(201, 201, 201);
 }
 
-.imagemUser img{
+.imagemUser img {
     width: 100%;
     height: auto;
 }
 
-.divisoriaV{
+.divisoriaV {
     width: 0.5%;
     height: 89vh;
     background-color: rgba(255, 255, 255, 0);
     box-shadow: 1px 1px 10px black;
 }
 
-.divisoriaH{
+.divisoriaH {
     width: 100%;
     height: 1vh;
     background-color: rgba(255, 255, 255, 0);
     box-shadow: 1px 1px 10px black;
 }
 
-.divImagem{
+.divImagem {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,7 +251,7 @@ button:hover{
     width: 100%;
 }
 
-.imagemUser{
+.imagemUser {
     overflow: hidden;
     width: 100px;
     height: 100px;
@@ -105,7 +260,7 @@ button:hover{
     background-color: #000000;
 }
 
-.informacao{
+.informacao {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -114,17 +269,17 @@ button:hover{
     width: 100%;
 }
 
-.informacao #imgrank{
+.informacao #imgrank {
     width: 100%;
     height: auto;
 }
 
-.informacao p{
+.informacao p {
     font-weight: 1000;
     font-size: x-large;
 }
 
-#btnSair{
+#btnSair {
     align-self: center;
     background-color: #fe6903;
     width: 70%;
@@ -134,7 +289,7 @@ button:hover{
     margin-bottom: 5%;
 }
 
-.confirmacaoSair{
+.confirmacaoSair {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -142,11 +297,13 @@ button:hover{
     height: 30%;
     width: 100%;
 }
-.confirmacaoSair p{
+
+.confirmacaoSair p {
     font-size: x-large;
     font-weight: 1000;
 }
-.confirmacaoSair button{
+
+.confirmacaoSair button {
     height: 40%;
     width: 70%;
     background-color: #fe6903;
@@ -154,7 +311,7 @@ button:hover{
     font-size: x-large;
 }
 
-.configuracoesUser{
+.configuracoesUser {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -166,12 +323,12 @@ button:hover{
     height: 90%;
 }
 
-.configuracoesUser h1{
+.configuracoesUser h1 {
     color: #fe6903;
 
 }
 
-.configuracoesUser button{
+.configuracoesUser button {
     height: 20%;
     width: 30%;
     color: white;
@@ -179,7 +336,7 @@ button:hover{
     font-size: x-large;
 }
 
-.configImagem{
+.configImagem {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -188,47 +345,47 @@ button:hover{
     width: 100%;
 }
 
-.configImagem button{
+.configImagem button {
     font-size: large;
 }
 
-.configImagem h1{
+.configImagem h1 {
     align-self: center;
 }
 
-.configImagem input{
+.configImagem input {
     border: solid 2px #fe6903;
     border-radius: 3px;
     text-align: center;
 }
 
-.configUser{
+.configUser {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     height: 60%;
-    width: 100%;    
+    width: 100%;
 }
 
-.configUser h2{
+.configUser h2 {
     color: #000000;
 }
 
-.configUser p{
+.configUser p {
     display: flex;
     justify-content: space-between;
     width: 60%;
 }
 
-.configUser input{
+.configUser input {
     text-align: center;
     width: 60%;
     border: solid 2px #fe6903;
     border-radius: 3px;
 }
 
-.feedback{
+.feedback {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -240,14 +397,14 @@ button:hover{
     box-shadow: 3px 3px 10px;
 }
 
-.feedback textarea{
+.feedback textarea {
     text-align: justify;
     padding: 5%;
     resize: none;
     font-size: x-large;
 }
 
-.feedback button{
+.feedback button {
     width: 30%;
     height: 15%;
     background-color: #fe6903;
@@ -255,21 +412,21 @@ button:hover{
     font-size: x-large;
 }
 
-.feedback input{
+.feedback input {
     appearance: auto;
-    color: rgb(0,0,0),rgb(254, 105, 3);
+    color: rgb(0, 0, 0), rgb(254, 105, 3);
 }
 
-.feedback h1{
+.feedback h1 {
     color: #fe6903;
 }
 
-#avaliacao{
--webkit-appearance: none ;
-background-color: #fe6903;
-height: 20px;
-width: 500px;
-border-radius: 20px;
+#avaliacao {
+    -webkit-appearance: none;
+    background-color: #fe6903;
+    height: 20px;
+    width: 500px;
+    border-radius: 20px;
 }
 
 #avaliacao::-webkit-slider-thumb {
@@ -282,7 +439,7 @@ border-radius: 20px;
     margin-top: -5px;
 }
 
-.arigatou{
+.arigatou {
     display: none;
     width: 100vw;
     height: 30vh;

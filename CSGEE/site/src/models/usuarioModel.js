@@ -25,7 +25,7 @@ function cadastrar(nome, email, senha) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO usuario (nomeUsuario, email, senha, imagem) VALUES ('${nome}', '${email}', '${senha}', 'logoFixBar.svg');
+        INSERT INTO usuario (nomeUsuario, email, senha, imagem) VALUES ('${nome}', '${email}', '${senha}', 'https://cdn1.iconfinder.com/data/icons/online-money/80/onlinemoney-12-512.png');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

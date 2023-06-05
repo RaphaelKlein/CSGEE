@@ -30,4 +30,8 @@ router.post("/enviarFeedback", function (req, res) {
 router.post("/verificar", function (req, res) {
     perfilController.verificar(req, res);
 })
+
+router.post("/pegarQuiz", function (req, res) {
+    perfilController.pegarQuiz(req, res);
+})
 module.exports = router;

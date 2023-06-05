@@ -149,6 +149,33 @@ function verificar(req, res) {
         );
 }
 
+function pegarQuiz(req, res) {
+    var fkUsuario = req.body.idServer;
+
+    perfilModel.pegarQuiz(fkUsuario)
+        .then(
+            function (resultado) {
+                console.log(`\nResultados encontrados: ${resultado.length}`);
+                console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                if (resultado.length == 1) {
+                    console.log(resultado);
+                    res.json(resultado[0]);
+                } else if (resultado.length == 0) {
+                    res.status(403).send("Quiz ainda não realizado");
+                } else {
+                    res.status(403).send("Quiz realizado mais de uma vez!");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     inserirImg,
     consultar,
@@ -156,5 +183,6 @@ module.exports = {
     atualizarEmail,
     atualizarSenha,
     enviarFeedback,
-    verificar
+    verificar,
+    pegarQuiz
 }

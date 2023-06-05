@@ -8,11 +8,8 @@ function validarSessao() {
     if (email != null && nome != null) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
         navNomeUser.innerHTML = sessionStorage.NOME_USUARIO
-        fixNomeUser.innerHTML = sessionStorage.NOME_USUARIO
         navUser.style.display = 'flex'
-        fixUser.style.display = 'flex'
         navGuest.style.display = 'none'
-        fixGuest.style.display = 'none'
 
         // finalizarAguardar();
     } else {
@@ -27,7 +24,6 @@ function validarSessaoHome(){
     if (email != null && nomeUsuario != null) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
         navNomeUser.innerHTML = sessionStorage.NOME_USUARIO
-        
         navUser.style.display = 'flex'
         navGuest.style.display = 'none'
     }
