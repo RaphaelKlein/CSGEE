@@ -1,0 +1,70 @@
+body{
+    overflow-x:hidden;
+    background: url(../assets/midia/compostoBG.svg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.nav{
+    height: 18vh;
+    width: 100vw;
+}
+
+.site{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: 320vh;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 70vh;
+    border-radius: 50px;
+    box-shadow: 5px 5px 20px black ;
+    background-color: white;
+    border: 2px #fe6903 solid;
+}
+
+.header img{
+    height: auto;
+    width: 50%;
+}
+
+.header h1{
+    color: #fe6903;
+    font-size: 60px;
+}
+
+.texto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 70%;
+    height: 220vh;
+    border-radius: 50px;
+    box-shadow: 5px 5px 20px black ;
+    background-color: white;
+    border: 2px #fe6903 solid;
+
+}
+
+.texto p{
+    width: 80%;
+}
+
+.texto ul, li{
+    width: 80%;
+}
+
+.texto .estilo{
+    color: #fe6903;
+    font-weight: 600;
+}

@@ -8,6 +8,7 @@ function validarSessao() {
     if (email != null && nome != null) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
         navNomeUser.innerHTML = sessionStorage.NOME_USUARIO
+        document.getElementById("navImgUser").src = `${sessionStorage.IMG_USUARIO}`
         navUser.style.display = 'flex'
         navGuest.style.display = 'none'
 
@@ -24,6 +25,7 @@ function validarSessaoHome(){
     if (email != null && nomeUsuario != null) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
         navNomeUser.innerHTML = sessionStorage.NOME_USUARIO
+        document.getElementById("navImgUser").src = `${sessionStorage.IMG_USUARIO}`
         navUser.style.display = 'flex'
         navGuest.style.display = 'none'
     }
