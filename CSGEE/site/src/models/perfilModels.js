@@ -48,10 +48,33 @@ function atualizarSenha(senha, idUsuario) {
     return database.executar(instrucao);
 }
 
+function enviarFeedback(fkUsuario, comentario, nota) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", fkUsuario, comentario, nota);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO Feedback (fkUsuario, comentario, nota) VALUES ('${fkUsuario}', '${comentario}', '${nota}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function verificar(fkUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(${fkusuario}))");
+    var instrucao = `
+        SELECT * FROM Feedback WHERE fkUsuario = '${fkUsuario}' ;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     inserirImg,
     consultar,
     atualizarNome,
     atualizarEmail,
-    atualizarSenha
+    atualizarSenha,
+    enviarFeedback,
+    verificar
 }

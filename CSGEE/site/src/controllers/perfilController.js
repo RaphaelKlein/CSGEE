@@ -53,7 +53,7 @@ function atualizarNome(req, res) {
     var nomeUsuario = req.body.nomeServer
     var idUsuario = req.body.idServer
 
-    perfilModel.atualizarNome(nomeUsuario,idUsuario)
+    perfilModel.atualizarNome(nomeUsuario, idUsuario)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -107,11 +107,54 @@ function atualizarSenha(req, res) {
 
 }
 
+function enviarFeedback(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fkUsuario = req.body.idServer;
+    var comentario = req.body.comentarioServer;
+    var nota = req.body.avaliacaoServer;
+
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    perfilModel.enviarFeedback(fkUsuario, comentario, nota)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function verificar(req, res) {
+    var fkUsuario = req.body.idServer;
+    perfilModel.verificar(fkUsuario)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 module.exports = {
     inserirImg,
     consultar,
     atualizarNome,
     atualizarEmail,
-    atualizarSenha
+    atualizarSenha,
+    enviarFeedback,
+    verificar
 }

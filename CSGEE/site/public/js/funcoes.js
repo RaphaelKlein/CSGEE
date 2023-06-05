@@ -22,16 +22,14 @@ function validarSessao() {
 
 function validarSessaoHome(){
     var email = sessionStorage.EMAIL_USUARIO;
-    var nome = sessionStorage.NOME_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
 
-    if (email != null && nome != null) {
+    if (email != null && nomeUsuario != null) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
         navNomeUser.innerHTML = sessionStorage.NOME_USUARIO
-        fixNomeUser.innerHTML = sessionStorage.NOME_USUARIO
+        
         navUser.style.display = 'flex'
-        fixUser.style.display = 'flex'
         navGuest.style.display = 'none'
-        fixGuest.style.display = 'none'
     }
 }
 

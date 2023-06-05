@@ -23,5 +23,11 @@ router.put("/atualizarSenha", function (req, res) {
     perfilController.atualizarSenha(req, res);
 });
 
+router.post("/enviarFeedback", function (req, res) {
+    perfilController.enviarFeedback(req, res);
+})
 
+router.post("/verificar", function (req, res) {
+    perfilController.verificar(req, res);
+})
 module.exports = router;

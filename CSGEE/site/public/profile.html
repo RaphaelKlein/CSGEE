@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/estiloprofile.css">
     <link rel="stylesheet" href="css/estilogeral.css">
     <link rel="icon" href="assets/icon/favicon2.ico">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/funcoes.js"></script>
     <title id="titulo"></title>
 </head>
@@ -51,7 +52,7 @@
         </div>
     </div>
 
-    <div onload="pegarDados()" class="site">
+    <div class="site">
         <div class="containerH">
             <div class="barraLateral">
                 <div class="divImagem">
@@ -101,23 +102,28 @@
         <div class="divisoriaH"></div>
         <div class="containerV">
             <div class="estatisticas">
-                <canvas>
+                <canvas id="graficos">
 
                 </canvas>
+                <canvas id="graficos2"></canvas>
             </div>
         </div>
         <div class="divisoriaH"></div>
+        <div id="arigato" class="arigatou">
+            <h1>MUITO OBRIGADO PELO SEU FEEDBACK!</h1>
+        </div>
         <div id="feedback" class="containerV">
             <div class="feedback">
                 <h1>Por favor avalie o blog CSGEE!</h1>
 
                 <h2>Faça um breve comentário sobre o que você achou do CSGEE!</h2>
-                <textarea name="" id="" cols="50" rows="5"></textarea>
+                <textarea inputmode="text" id="comentarioFeedback" cols="50" rows="5"></textarea>
 
                 <h2>Avalie meu trabalho!</h2>
-                <input type="range" id="">
-
-                <button onclick="enviarFeedback()">Enviar Feedback!</button>
+                <h1>
+                NOTA 0 <input type="range" id="avaliacaoFeedback" max="10" min="0"> NOTA 10
+                </h1>
+                <button id="btnFBK" onclick="enviarFeedback()">Enviar Feedback!</button>
             </div>
         </div>
 
@@ -129,19 +135,23 @@
         document.getElementById("imgUser").src = `${sessionStorage.IMG_USUARIO}`
         document.getElementById("navImgUser").src = `${sessionStorage.IMG_USUARIO}`
         document.getElementById("fixImgUser").src = `${sessionStorage.IMG_USUARIO}`
-    var idUsuarioVar = sessionStorage.ID_USUARIO
-    nomeUser.innerHTML = sessionStorage.NOME_USUARIO
-    if(sessionStorage.PATENTE_USUARIO  == undefined || sessionStorage.PATENTE_USUARIO == null){
-        rank.innerHTML = `<center>Sem Rank<br><p style="font-size: small; color: Red">Realize o Quiz para descobrir seu rank!</p></center>`
-    } else{
-        rank.innerHTML = sessionStorage.PATENTE_USUARIO
-    }
+        nomeUser.innerHTML = sessionStorage.NOME_USUARIO
+        if(sessionStorage.PATENTE_USUARIO  == undefined || sessionStorage.PATENTE_USUARIO == null){
+            rank.innerHTML = `<center>Sem Rank<br><p style="font-size: small; color: Red">Realize o Quiz para descobrir seu rank!</p></center>`
+        } else{
+            rank.innerHTML = sessionStorage.PATENTE_USUARIO
+        }
+    
+        if(sessionStorage.RANK_IMG_USUARIO  == undefined || sessionStorage.RANK_IMG_USUARIO == null){
+            document.getElementById("imgrank").src =`assets/midia/unranked.svg`
+        } else{
+            document.getElementById("imgrank").src = `assets/midia/${sessionStorage.RANK_IMG_USUARIO}.svg`;
+        }
 
-    if(sessionStorage.RANK_IMG_USUARIO  == undefined || sessionStorage.RANK_IMG_USUARIO == null){
-        document.getElementById("imgrank").src =`assets/midia/unranked.svg`
-    } else{
-        document.getElementById("imgrank").src = `assets/midia/${sessionStorage.RANK_IMG_USUARIO}.svg`;
-    }
+
+        
+    var idUsuarioVar = sessionStorage.ID_USUARIO
+    
 
     function sair() {
         btnSair.style.display = 'none'
@@ -153,7 +163,7 @@
         confirma.style.display = 'none'
     }
 
-    function pegarDados() {
+    (function pegarDados() {
         fetch("/perfil/consultar", {
             method: "POST",
             headers: {
@@ -175,6 +185,7 @@
 
                         nomeUserCfg.value = json.nomeUsuario
                         emailUserCfg.value = json.email
+                        iptImg.value = json.imagem
                     });
                 }
             } else {
@@ -190,7 +201,7 @@
         }).catch(function (erro) {
             console.log(erro);
         })
-    }
+    })()
 
     function imgSubmit() {
         var imgVar = iptImg.value
@@ -221,6 +232,7 @@
             console.log(`#ERRO: ${resposta}`);
             // finalizarAguardar();
         });
+        window.location = "profile.html"
     }
 
     function perfilSubmit() {
@@ -260,6 +272,7 @@
         }).catch(function (erro) {
             console.log(erro);
         })
+
         fetch("/perfil/atualizarEmail", {
             method: "PUT",
             headers: {
@@ -295,6 +308,7 @@
         }).catch(function (erro) {
             console.log(erro);
         })
+
         fetch("/perfil/atualizarSenha", {
             method: "PUT",
             headers: {
@@ -332,5 +346,132 @@
         })
         pegarDados()
     }
+
+   function enviarFeedback(){
+    var comentarioVar = comentarioFeedback.value
+    var avaliacaoVar = avaliacaoFeedback.value
+    fetch("/perfil/enviarFeedback", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idServer: idUsuarioVar,
+                comentarioServer: comentarioVar,
+                avaliacaoServer: avaliacaoVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Feedback Enviado!";
+
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o feedback!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
+   ( function verificarFeedback(){
+    fetch("./perfil/verificar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idServer: idUsuarioVar,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+                if (resposta.length != 0) {
+
+                    btnFBK.style.display = "none"
+                    feedback.style.display = `none`
+                    arigato.style.display = `FLEX`
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                    });
+                }
+            } else {
+
+                console.log("Houve um erro ao tentar autenticar o Quizz!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    })()
+    
+
+(function plotarGrafico(){
+var canva = document.getElementById("graficos");
+
+   var barras = new Chart(canva, {
+    type: 'bar',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Estatísticas do quizz',
+        data: [],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  pinto.data.labels.push("SE","GNM","MGE","DMG","LGM","SMFC","GE")
+  pinto.data.datasets[0].data.push(2,3)
+  pinto.update()
+
+  var canva2 = document.getElementById("graficos2");
+
+   var pinto2 = new Chart(canva2, {
+    type: 'doughnut',
+    data: {
+      labels: [],
+      datasets: [{
+          label: 'Estatísticas do quizz',
+          backgroundColor: ['#FE6903','#000000'],
+        data: [],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  pinto2.data.labels.push("sexo","triste")
+  pinto2.data.datasets[0].data.push(2,3)
+  pinto2.update()
+})()
 
 </script>

@@ -239,7 +239,7 @@
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(O campo confirmação do e-mail está diferente do campo e-mail!)";
 
-            finalizarAguardar();
+            // finalizarAguardar();
             return false;
 
         } else{
@@ -278,7 +278,7 @@
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
+            // finalizarAguardar();
         });
 
         return false;
