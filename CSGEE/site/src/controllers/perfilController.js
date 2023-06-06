@@ -135,7 +135,7 @@ function verificar(req, res) {
     var fkUsuario = req.body.idServer;
     perfilModel.verificar(fkUsuario)
         .then(function (resultado) {
-            if (resultado.length > 0) {
+            if (resultado.length == 1) {
                 res.status(200).json(resultado);
             } else {
                 res.status(204).send("Nenhum resultado encontrado!")

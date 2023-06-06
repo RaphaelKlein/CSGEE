@@ -368,33 +368,36 @@
     }
 
     function verificarFeedback() {
-        fetch("./perfil/verificar", {
+        fetch("/perfil/verificar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                idServer: idUsuarioVar,
+            body: JSON.stringify({idServer: idUsuarioVar
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+            console.log("ESTOU NO THEN DO verificar()!")
 
             if (resposta.ok) {
                 console.log(resposta);
+            
+                if (resposta.status == 204) {
 
-                btnFBK.style.display = "none"
-                feedback.style.display = `none`
-                arigato.style.display = `flex`
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                });
+                        
+                } else {
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+    
+                        btnFBK.style.display = "none"
+                        feedback.style.display = `none`
+                        arigato.style.display = `flex`
+                    });
+                }
 
             } else {
 
-                console.log("Houve um erro ao tentar autenticar o Quizz!");
+                console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
                     console.error(texto);
@@ -405,7 +408,10 @@
         }).catch(function (erro) {
             console.log(erro);
         })
+
+        return false;
     }
+
 
     verificarFeedback()
 
@@ -470,11 +476,7 @@
                                 }]
                             },
                             options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
+
                             }
                         });
                     });
